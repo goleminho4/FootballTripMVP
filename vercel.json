@@ -13,6 +13,5 @@
       "src": "/(.*)",
       "dest": "/templates/$1"
     }
-  ],
-  "outputDirectory": "templates"
+  ]
 }
