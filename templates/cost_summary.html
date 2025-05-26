@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Summary - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+   <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step completed">3. Team</div>
+            <div class="progress-step completed">4. Match</div>
+            <div class="progress-step active">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Your Trip Summary</h1>
+                <p>Review your complete football trip package</p>
+            </div>
+
+            <!-- Trip Overview -->
+            <div class="trip-overview-card">
+                <div class="match-info">
+                    <h2 id="matchTitle">Loading match...</h2>
+                    <div class="match-details">
+                        <div id="matchDate">Loading...</div>
+                        <div id="matchVenue">Loading...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cost Breakdown -->
+            <div class="cost-breakdown-section">
+                <h3>Cost Breakdown</h3>
+                <div class="cost-items">
+                    <div class="cost-item">
+                        <div class="cost-category">
+                            <span class="icon">✈️</span>
+                            <div class="category-info">
+                                <h4>Flight</h4>
+                                <p id="flightDetails">Loading...</p>
+                            </div>
+                        </div>
+                        <div class="cost-amount" id="flightCost">€0</div>
+                    </div>
+
+                    <div class="cost-item">
+                        <div class="cost-category">
+                            <span class="icon">🏨</span>
+                            <div class="category-info">
+                                <h4>Hotel</h4>
+                                <p id="hotelDetails">Loading...</p>
+                            </div>
+                        </div>
+                        <div class="cost-amount" id="hotelCost">€0</div>
+                    </div>
+
+                    <div class="cost-item">
+                        <div class="cost-category">
+                            <span class="icon">🎟️</span>
+                            <div class="category-info">
+                                <h4>Match Ticket</h4>
+                                <p id="ticketDetails">Loading...</p>
+                            </div>
+                        </div>
+                        <div class="cost-amount" id="ticketCost">€0</div>
+                    </div>
+
+                    <div class="cost-item">
+                        <div class="cost-category">
+                            <span class="icon">🚕</span>
+                            <div class="category-info">
+                                <h4>Local Transport</h4>
+                                <p>Airport transfers & local travel</p>
+                            </div>
+                        </div>
+                        <div class="cost-amount">€35</div>
+                    </div>
+                </div>
+
+                <div class="total-cost">
+                    <div class="total-label">Total Trip Cost</div>
+                    <div class="total-amount" id="totalCost">€0</div>
+                </div>
+            </div>
+
+            <!-- Booking Actions -->
+            <div class="booking-actions">
+                <div class="booking-options">
+                    <h3>Ready to Book?</h3>
+                    <p>Secure your complete football trip package with one click</p>
+                    
+                    <button class="btn btn-primary btn-large" id="bookCompleteTrip">
+                        Book Complete Trip Package
+                    </button>
+                    
+                    <div class="individual-booking">
+                        <p>Or book components individually:</p>
+                        <div class="individual-buttons">
+                            <button class="btn btn-secondary" disabled>Book Flight Only</button>
+                            <button class="btn btn-secondary" disabled>Book Hotel Only</button>
+                            <button class="btn btn-secondary" disabled>Buy Match Ticket</button>
+                        </div>
+                        <p class="booking-note">
+                            <small>Individual booking options will be available in the full version</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="select_accommodation.html" class="btn btn-secondary">← Back to Hotels</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load all user selections
+        const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+        const match = JSON.parse(localStorage.getItem('selectedMatch') || '{}');
+        const flight = JSON.parse(localStorage.getItem('selectedFlight') || '{}');
+        const hotel = JSON.parse(localStorage.getItem('selectedHotel') || '{}');
+
+        // Calculate and display trip summary
+        function displayTripSummary() {
+            // Match information
+            document.getElementById('matchTitle').textContent = `${match.homeTeam} vs ${match.awayTeam}`;
+            document.getElementById('matchDate').textContent = formatDate(match.date) + ' at ' + match.time;
+            document.getElementById('matchVenue').textContent = `${match.stadium}, ${match.city}`;
+
+            // Flight details
+            document.getElementById('flightDetails').textContent = 
+                `${flight.airline} - ${origin.city} to ${match.city} (Return)`;
+            document.getElementById('flightCost').textContent = `€${flight.price}`;
+
+            // Hotel details
+            const hotelNights = hotel.nights || match.nights || 2;
+            document.getElementById('hotelDetails').textContent = 
+                `${hotel.name} - ${hotelNights} nights`;
+            document.getElementById('hotelCost').textContent = `€${hotel.totalPrice}`;
+
+            // Ticket details
+            const ticketPrice = match.minPrice || 75;
+            document.getElementById('ticketDetails').textContent = 
+                `${match.competition} ticket - Standard seat`;
+            document.getElementById('ticketCost').textContent = `€${ticketPrice}`;
+
+            // Calculate total
+            const localTransport = 35;
+            const totalCost = flight.price + hotel.totalPrice + ticketPrice + localTransport;
+            document.getElementById('totalCost').textContent = `€${totalCost}`;
+
+            // Store total for payment page
+            localStorage.setItem('tripTotal', JSON.stringify({
+                flight: flight.price,
+                hotel: hotel.totalPrice,
+                ticket: ticketPrice,
+                transport: localTransport,
+                total: totalCost
+            }));
+        }
+
+        // Helper function to format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-GB', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        // Book complete trip
+        document.getElementById('bookCompleteTrip').addEventListener('click', function() {
+            window.location.href = 'payment.html';
+        });
+
+        // Initialize page
+        displayTripSummary();
+    </script>
+</body>
+</html>

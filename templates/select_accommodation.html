@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Accommodation - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+ <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step completed">3. Team</div>
+            <div class="progress-step completed">4. Match</div>
+            <div class="progress-step active">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Choose Your Hotel</h1>
+                <p id="hotelInfo">Loading accommodation options...</p>
+            </div>
+
+            <div class="hotels-section">
+                <h3>Recommended Hotels Near Stadium</h3>
+                <div id="hotelsGrid" class="hotels-grid">
+                    <!-- Hotel options will be loaded here -->
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="select_transport.html" class="btn btn-secondary">← Back to Flights</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load user selections
+        const match = JSON.parse(localStorage.getItem('selectedMatch') || '{}');
+        const flight = JSON.parse(localStorage.getItem('selectedFlight') || '{}');
+
+        // Generate mock hotel data based on match city
+        function generateHotels() {
+            const basePrice = calculateBaseHotelPrice();
+            const city = match.city || 'London';
+            
+            return [
+                {
+                    id: 1,
+                    name: `${city} Stadium Hotel`,
+                    rating: 4,
+                    distance: '0.3 km from stadium',
+                    pricePerNight: Math.round(basePrice * 1.5),
+                    amenities: ['Free WiFi', 'Gym', 'Restaurant', 'Bar'],
+                    description: 'Modern hotel within walking distance of the stadium',
+                    image: 'hotel-luxury.jpg'
+                },
+                {
+                    id: 2,
+                    name: `City Center ${city} Hotel`,
+                    rating: 4,
+                    distance: '2.1 km from stadium',
+                    pricePerNight: Math.round(basePrice * 1.2),
+                    amenities: ['Free WiFi', 'Restaurant', 'Room Service'],
+                    description: 'Comfortable hotel in the heart of the city center',
+                    image: 'hotel-business.jpg'
+                },
+                {
+                    id: 3,
+                    name: `Budget Inn ${city}`,
+                    rating: 3,
+                    distance: '1.8 km from stadium',
+                    pricePerNight: Math.round(basePrice * 0.7),
+                    amenities: ['Free WiFi', 'Continental Breakfast'],
+                    description: 'Clean and affordable accommodation with all essentials',
+                    image: 'hotel-budget.jpg'
+                },
+                {
+                    id: 4,
+                    name: `Luxury ${city} Suites`,
+                    rating: 5,
+                    distance: '0.8 km from stadium',
+                    pricePerNight: Math.round(basePrice * 2.0),
+                    amenities: ['Free WiFi', 'Spa', 'Concierge', 'Premium Restaurant', 'Valet Parking'],
+                    description: 'Luxurious suites with premium amenities and service',
+                    image: 'hotel-luxury-suite.jpg'
+                }
+            ];
+        }
+
+        // Calculate base hotel price based on city and match date
+        function calculateBaseHotelPrice() {
+            const cityPrices = {
+                'London': 120,
+                'Madrid': 90,
+                'Barcelona': 100,
+                'Rome': 85,
+                'Milan': 95,
+                'Paris': 110,
+                'Munich': 80,
+                'Manchester': 70,
+                'Liverpool': 65,
+                'Turin': 75,
+                'Naples': 60
+            };
+            
+            return cityPrices[match.city] || 80;
+        }
+
+        // Update page info
+        function updatePageInfo() {
+            const nights = match.nights || 2;
+            document.getElementById('hotelInfo').innerHTML = `
+                <span class="location-info">${match.city}</span> • 
+                <span class="stay-info">${nights} nights</span> • 
+                <span class="date-info">${match.date}</span>
+            `;
+        }
+
+        // Load and display hotels
+        function loadHotels() {
+            const hotelsGrid = document.getElementById('hotelsGrid');
+            const hotels = generateHotels();
+            const nights = match.nights || 2;
+            
+            hotelsGrid.innerHTML = hotels.map(hotel => `
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="../static/img/hotels/${hotel.image}" 
+                             alt="${hotel.name}"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDIwMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik04MCA0MEgxMjBWODBIODBWNDBaIiBmaWxsPSIjOTlBM0E0Ii8+CjwvZz4KPC9zdmc+'">
+                        <div class="hotel-rating">
+                            ${'★'.repeat(hotel.rating)}${'☆'.repeat(5-hotel.rating)}
+                        </div>
+                    </div>
+                    
+                    <div class="hotel-info">
+                        <h4>${hotel.name}</h4>
+                        <p class="hotel-distance">${hotel.distance}</p>
+                        <p class="hotel-description">${hotel.description}</p>
+                        
+                        <div class="hotel-amenities">
+                            ${hotel.amenities.map(amenity => `<span class="amenity">${amenity}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="hotel-pricing">
+                        <div class="price-per-night">€${hotel.pricePerNight}/night</div>
+                        <div class="total-price">Total: €${hotel.pricePerNight * nights} (${nights} nights)</div>
+                        
+                        <button class="btn btn-primary select-hotel-btn" 
+                                data-hotel-id="${hotel.id}">
+                            Select This Hotel
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.select-hotel-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const hotelId = this.dataset.hotelId;
+                    const hotel = hotels.find(h => h.id == hotelId);
+                    
+                    localStorage.setItem('selectedHotel', JSON.stringify({
+                        ...hotel,
+                        totalPrice: hotel.pricePerNight * nights,
+                        nights: nights
+                    }));
+                    
+                    window.location.href = 'cost_summary.html';
+                });
+            });
+        }
+
+        // Initialize page
+        updatePageInfo();
+        loadHotels();
+    </script>
+</body>
+</html>

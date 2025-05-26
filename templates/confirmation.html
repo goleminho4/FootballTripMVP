@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step completed">3. Team</div>
+            <div class="progress-step completed">4. Match</div>
+            <div class="progress-step completed">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+<body>
+    <div class="confirmation-page">
+        <div class="container">
+            <!-- Success Header -->
+            <div class="success-header">
+                <div class="success-icon">✅</div>
+                <h1>Booking Confirmed!</h1>
+                <h2 class="greek-message">Καλό ταξίδι!</h2>
+                <p class="confirmation-subtitle">Your football trip has been successfully booked!</p>
+            </div>
+
+            <!-- Booking Reference -->
+            <div class="booking-reference">
+                <div class="reference-card">
+                    <h3>Booking Reference</h3>
+                    <div class="reference-number" id="bookingRef">FT-2025-XXXX</div>
+                    <p>Save this reference number for your records</p>
+                </div>
+            </div>
+
+            <!-- Trip Itinerary -->
+            <div class="trip-itinerary">
+                <h3>Your Trip Itinerary</h3>
+                
+                <div class="itinerary-section">
+                    <div class="itinerary-item">
+                        <div class="item-icon">✈️</div>
+                        <div class="item-content">
+                            <h4>Outbound Flight</h4>
+                            <div class="flight-details" id="outboundFlight">Loading...</div>
+                            <div class="confirmation-code">Confirmation: <span id="flightConfirm">ABC123</span></div>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="item-icon">🏨</div>
+                        <div class="item-content">
+                            <h4>Hotel Accommodation</h4>
+                            <div class="hotel-details" id="hotelDetails">Loading...</div>
+                            <div class="confirmation-code">Confirmation: <span id="hotelConfirm">HTL456</span></div>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-item match-highlight">
+                        <div class="item-icon">⚽</div>
+                        <div class="item-content">
+                            <h4>Football Match</h4>
+                            <div class="match-details" id="matchDetails">Loading...</div>
+                            <div class="confirmation-code">Ticket: <span id="ticketConfirm">TKT789</span></div>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="item-icon">🚕</div>
+                        <div class="item-content">
+                            <h4>Airport Transfer</h4>
+                            <div class="transfer-details">Return airport transfers included</div>
+                            <div class="confirmation-code">Voucher: <span id="transferConfirm">TRN012</span></div>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-item">
+                        <div class="item-icon">✈️</div>
+                        <div class="item-content">
+                            <h4>Return Flight</h4>
+                            <div class="flight-details" id="returnFlight">Loading...</div>
+                            <div class="confirmation-code">Confirmation: <span id="returnFlightConfirm">DEF789</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Summary -->
+            <div class="payment-summary-confirmed">
+                <h3>Payment Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span>Flight (Return)</span>
+                        <span id="paidFlight">€0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Hotel</span>
+                        <span id="paidHotel">€0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Match Ticket</span>
+                        <span id="paidTicket">€0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Local Transport</span>
+                        <span id="paidTransport">€35</span>
+                    </div>
+                    <div class="summary-total">
+                        <span><strong>Total Paid</strong></span>
+                        <span><strong id="totalPaid">€0</strong></span>
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <small>Paid with •••• •••• •••• 9012</small>
+                </div>
+            </div>
+
+            <!-- Important Information -->
+            <div class="important-info">
+                <h3>Important Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>📧 Email Confirmation</h4>
+                        <p>Detailed confirmations have been sent to your email address</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>📱 Mobile Tickets</h4>
+                        <p>Your match ticket will be available in your email 24 hours before the game</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🆔 Travel Documents</h4>
+                        <p>Remember to bring valid ID/passport for your trip</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🕐 Check-in Times</h4>
+                        <p>Flight: 2 hours before departure<br>Hotel: After 3:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="confirmation-actions">
+                <button class="btn btn-primary" onclick="window.print()">
+                    📄 Print Itinerary
+                </button>
+                <button class="btn btn-secondary" id="downloadPdf">
+                    💾 Download PDF
+                </button>
+                <a href="index.html" class="btn btn-secondary">
+                    🏠 Plan Another Trip
+                </a>
+            </div>
+
+            <!-- Support Info -->
+            <div class="support-info">
+                <h4>Need Help?</h4>
+                <p>Contact our 24/7 support team:</p>
+                <div class="contact-methods">
+                    <span>📞 +1-800-FOOTBALL</span>
+                    <span>📧 support@footballtrip.com</span>
+                    <span>💬 Live Chat Available</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load all booking data
+        const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+        const match = JSON.parse(localStorage.getItem('selectedMatch') || '{}');
+        const flight = JSON.parse(localStorage.getItem('selectedFlight') || '{}');
+        const hotel = JSON.parse(localStorage.getItem('selectedHotel') || '{}');
+        const tripTotal = JSON.parse(localStorage.getItem('tripTotal') || '{}');
+
+        // Generate booking reference
+        function generateBookingReference() {
+            const prefix = 'FT';
+            const year = new Date().getFullYear();
+            const random = Math.floor(Math.random() * 9000) + 1000;
+            return `${prefix}-${year}-${random}`;
+        }
+
+        // Display booking confirmation details
+        function displayBookingDetails() {
+            // Generate and display booking reference
+            const bookingRef = generateBookingReference();
+            document.getElementById('bookingRef').textContent = bookingRef;
+
+            // Flight details
+            const departureDate = new Date(match.date);
+            const returnDate = new Date(match.date);
+            returnDate.setDate(returnDate.getDate() + (match.nights || 2));
+
+            document.getElementById('outboundFlight').innerHTML = `
+                <strong>${flight.airline}</strong><br>
+                ${origin.city} (${origin.code}) → ${match.city}<br>
+                ${formatDate(departureDate)} at ${flight.departure}
+            `;
+
+            document.getElementById('returnFlight').innerHTML = `
+                <strong>${flight.airline}</strong><br>
+                ${match.city} → ${origin.city} (${origin.code})<br>
+                ${formatDate(returnDate)} at ${getReturnTime()}
+            `;
+
+            // Hotel details
+            document.getElementById('hotelDetails').innerHTML = `
+                <strong>${hotel.name}</strong><br>
+                ${match.city}<br>
+                ${formatDate(departureDate)} - ${formatDate(returnDate)} (${match.nights || 2} nights)
+            `;
+
+            // Match details
+            document.getElementById('matchDetails').innerHTML = `
+                <strong>${match.homeTeam} vs ${match.awayTeam}</strong><br>
+                ${match.stadium}, ${match.city}<br>
+                ${formatDate(match.date)} at ${match.time}
+            `;
+
+            // Payment summary
+            document.getElementById('paidFlight').textContent = `€${tripTotal.flight || 0}`;
+            document.getElementById('paidHotel').textContent = `€${tripTotal.hotel || 0}`;
+            document.getElementById('paidTicket').textContent = `€${tripTotal.ticket || 0}`;
+            document.getElementById('paidTransport').textContent = `€${tripTotal.transport || 35}`;
+            document.getElementById('totalPaid').textContent = `€${tripTotal.total || 0}`;
+        }
+
+        // Helper functions
+        function formatDate(date) {
+            return date.toLocaleDateString('en-GB', {
+                weekday: 'short',
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+        }
+
+        function getReturnTime() {
+            // Generate a return time (usually later than outbound)
+            const times = ['18:30', '19:45', '21:10', '22:25'];
+            return times[Math.floor(Math.random() * times.length)];
+        }
+
+        // Download PDF simulation
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            alert('PDF download would be implemented in the full version. For now, please use the print function.');
+        });
+
+        // Clear localStorage after successful booking
+        function clearBookingData() {
+            const keysToKeep = ['demo_mode']; // Keep any persistent settings
+            const keysToRemove = [
+                'selectedOrigin', 'selectedLeague', 'selectedTeam', 
+                'selectedDates', 'selectedMatch', 'selectedFlight', 
+                'selectedHotel', 'tripTotal'
+            ];
+            
+            keysToRemove.forEach(key => localStorage.removeItem(key));
+        }
+
+        // Initialize page
+        displayBookingDetails();
+        
+        // Clear booking data after 30 seconds (give time for user to see/print)
+        setTimeout(clearBookingData, 30000);
+    </script>
+</body>
+</html>

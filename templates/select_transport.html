@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Transport - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+   <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step completed">3. Team</div>
+            <div class="progress-step completed">4. Match</div>
+            <div class="progress-step active">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Choose Your Flight</h1>
+                <p id="flightInfo">Loading flight options...</p>
+            </div>
+
+            <div class="trip-summary-card">
+                <h3>Trip Summary</h3>
+                <div id="tripSummary">Loading...</div>
+            </div>
+
+            <div class="transport-options">
+                <h3>Available Flights</h3>
+                <div id="flightsGrid" class="flights-grid">
+                    <!-- Flight options will be loaded here -->
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="select_match.html" class="btn btn-secondary">← Back to Matches</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load user selections
+        const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+        const match = JSON.parse(localStorage.getItem('selectedMatch') || '{}');
+        const team = JSON.parse(localStorage.getItem('selectedTeam') || '{}');
+
+        // Generate mock flight data
+        function generateFlights() {
+            const basePrice = calculateBaseFlightPrice();
+            
+            return [
+                {
+                    id: 1,
+                    airline: 'Ryanair',
+                    departure: '08:30',
+                    arrival: '12:45',
+                    duration: '2h 15m',
+                    stops: 'Direct',
+                    price: Math.round(basePrice * 0.7),
+                    type: 'Economy',
+                    baggage: '1 carry-on included',
+                    aircraft: 'Boeing 737'
+                },
+                {
+                    id: 2,
+                    airline: 'British Airways',
+                    departure: '14:20',
+                    arrival: '18:10',
+                    duration: '2h 50m',
+                    stops: 'Direct',
+                    price: Math.round(basePrice * 1.2),
+                    type: 'Economy Plus',
+                    baggage: '1 carry-on + 1 checked bag',
+                    aircraft: 'Airbus A320'
+                },
+                {
+                    id: 3,
+                    airline: 'Lufthansa',
+                    departure: '19:45',
+                    arrival: '23:30',
+                    duration: '3h 45m',
+                    stops: '1 stop (Frankfurt)',
+                    price: Math.round(basePrice * 0.9),
+                    type: 'Economy',
+                    baggage: '1 carry-on + 1 checked bag',
+                    aircraft: 'Airbus A321'
+                },
+                {
+                    id: 4,
+                    airline: 'EasyJet',
+                    departure: '06:15',
+                    arrival: '10:30',
+                    duration: '2h 15m',
+                    stops: 'Direct',
+                    price: Math.round(basePrice * 0.6),
+                    type: 'Economy',
+                    baggage: '1 small carry-on',
+                    aircraft: 'Airbus A319'
+                }
+            ];
+        }
+
+        // Calculate base flight price based on origin and destination
+        function calculateBaseFlightPrice() {
+            const basePrices = {
+                'LHR': { 'London': 0, 'Madrid': 180, 'Barcelona': 200, 'Rome': 220, 'Milan': 190, 'Paris': 150, 'Munich': 210, 'Manchester': 80, 'Liverpool': 90 },
+                'CDG': { 'London': 150, 'Madrid': 180, 'Barcelona': 170, 'Rome': 200, 'Milan': 180, 'Paris': 0, 'Munich': 190, 'Manchester': 160, 'Liverpool': 170 },
+                'MAD': { 'London': 180, 'Madrid': 0, 'Barcelona': 120, 'Rome': 190, 'Milan': 200, 'Paris': 180, 'Munich': 220, 'Manchester': 200, 'Liverpool': 210 },
+                'FCO': { 'London': 220, 'Madrid': 190, 'Barcelona': 210, 'Rome': 0, 'Milan': 150, 'Paris': 200, 'Munich': 180, 'Manchester': 240, 'Liverpool': 250 },
+                'AMS': { 'London': 160, 'Madrid': 200, 'Barcelona': 220, 'Rome': 240, 'Milan': 210, 'Paris': 140, 'Munich': 170, 'Manchester': 180, 'Liverpool': 190 },
+                'FRA': { 'London': 170, 'Madrid': 220, 'Barcelona': 240, 'Rome': 180, 'Milan': 160, 'Paris': 190, 'Munich': 120, 'Manchester': 190, 'Liverpool': 200 }
+            };
+
+            const originCode = origin.code || 'LHR';
+            const destinationCity = match.city || 'London';
+            
+            return basePrices[originCode]?.[destinationCity] || 200;
+        }
+
+        // Update page info
+        function updatePageInfo() {
+            if (origin.city && match.city) {
+                document.getElementById('flightInfo').innerHTML = `
+                    <span class="route-info">${origin.city} → ${match.city}</span> • 
+                    <span class="date-info">Departure: ${match.date}</span> • 
+                    <span class="stay-info">${match.nights} nights</span>
+                `;
+            }
+
+            // Trip summary
+            const returnDate = new Date(match.date);
+            returnDate.setDate(returnDate.getDate() + match.nights);
+            
+            document.getElementById('tripSummary').innerHTML = `
+                <div class="summary-row">
+                    <span class="label">Match:</span>
+                    <span class="value">${match.homeTeam} vs ${match.awayTeam}</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Date:</span>
+                    <span class="value">${formatDate(match.date)}</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Stadium:</span>
+                    <span class="value">${match.stadium}, ${match.city}</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">Stay:</span>
+                    <span class="value">${match.nights} nights (${match.date} to ${returnDate.toISOString().split('T')[0]})</span>
+                </div>
+                <div class="summary-row">
+                    <span class="label">From:</span>
+                    <span class="value">${origin.city} (${origin.code})</span>
+                </div>
+            `;
+        }
+
+        // Load and display flights
+        function loadFlights() {
+            const flightsGrid = document.getElementById('flightsGrid');
+            const flights = generateFlights();
+            
+            flightsGrid.innerHTML = flights.map(flight => `
+                <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="airline">
+                            <strong>${flight.airline}</strong>
+                            <span class="flight-type">${flight.type}</span>
+                        </div>
+                        <div class="flight-price">
+                            <span class="price">€${flight.price}</span>
+                            <span class="price-note">return</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-details">
+                        <div class="flight-route">
+                            <div class="departure">
+                                <div class="time">${flight.departure}</div>
+                                <div class="airport">${origin.code}</div>
+                                <div class="city">${origin.city}</div>
+                            </div>
+                            <div class="flight-info">
+                                <div class="flight-path">
+                                    <div class="flight-line"></div>
+                                    <div class="plane-icon">✈️</div>
+                                </div>
+                                <div class="duration">${flight.duration}</div>
+                                <div class="stops">${flight.stops}</div>
+                            </div>
+                            <div class="arrival">
+                                <div class="time">${flight.arrival}</div>
+                                <div class="airport">${getDestinationCode(match.city)}</div>
+                                <div class="city">${match.city}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flight-extras">
+                            <div class="flight-detail">
+                                <span class="detail-label">Baggage:</span>
+                                <span class="detail-value">${flight.baggage}</span>
+                            </div>
+                            <div class="flight-detail">
+                                <span class="detail-label">Aircraft:</span>
+                                <span class="detail-value">${flight.aircraft}</span>
+                            </div>
+                        </div>
+
+                        <div class="flight-features">
+                            ${flight.type === 'Economy Plus' ? '<span class="feature">Extra Legroom</span>' : ''}
+                            ${flight.stops === 'Direct' ? '<span class="feature">Direct Flight</span>' : ''}
+                            ${flight.baggage.includes('checked') ? '<span class="feature">Checked Bag</span>' : ''}
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary select-flight-btn" 
+                            data-flight-id="${flight.id}">
+                        Select This Flight
+                    </button>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.select-flight-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const flightId = this.dataset.flightId;
+                    const flight = flights.find(f => f.id == flightId);
+                    
+                    localStorage.setItem('selectedFlight', JSON.stringify(flight));
+                    window.location.href = 'select_accommodation.html';
+                });
+            });
+        }
+
+        // Get destination airport code based on city
+        function getDestinationCode(city) {
+            const cityToCode = {
+                'London': 'LHR',
+                'Madrid': 'MAD',
+                'Barcelona': 'BCN',
+                'Rome': 'FCO',
+                'Milan': 'MXP',
+                'Paris': 'CDG',
+                'Munich': 'MUC',
+                'Manchester': 'MAN',
+                'Liverpool': 'LPL',
+                'Turin': 'TRN',
+                'Naples': 'NAP',
+                'Dortmund': 'DTM',
+                'Leipzig': 'LEJ',
+                'Leverkusen': 'CGN',
+                'Frankfurt': 'FRA',
+                'Wolfsburg': 'BWE',
+                'Marseille': 'MRS',
+                'Lyon': 'LYS',
+                'Monaco': 'NCE',
+                'Nice': 'NCE',
+                'Lille': 'LIL'
+            };
+            return cityToCode[city] || 'XXX';
+        }
+
+        // Helper function to format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-GB', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // Initialize page
+        updatePageInfo();
+        loadFlights();
+    </script>
+</body>
+</html>

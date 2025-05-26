@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Team - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step active">3. Team</div>
+            <div class="progress-step">4. Match</div>
+            <div class="progress-step">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Choose Your Team</h1>
+                <p id="leagueInfo">Loading league information...</p>
+            </div>
+
+            <div id="teamsGrid" class="teams-grid">
+                <!-- Teams will be loaded based on selected league -->
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="select_league.html" class="btn btn-secondary">← Back to Leagues</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Updated teams data with correct image file names matching your folder
+        const teamsData = {
+            'premier-league': [
+                { id: 1, name: 'Arsenal', city: 'London', logo: 'arsenal.png' },
+                { id: 2, name: 'Chelsea', city: 'London', logo: 'chelsea.png' },
+                { id: 3, name: 'Liverpool', city: 'Liverpool', logo: 'liverpool.png' },
+                { id: 4, name: 'Manchester City', city: 'Manchester', logo: 'manchester-city.png' },
+                { id: 5, name: 'Manchester United', city: 'Manchester', logo: 'manchester-united.png' },
+                { id: 6, name: 'Tottenham', city: 'London', logo: 'tottenham-hotspur.png' }
+            ],
+            'la-liga': [
+                { id: 7, name: 'Real Madrid', city: 'Madrid', logo: 'real-madrid.png' },
+                { id: 8, name: 'Barcelona', city: 'Barcelona', logo: 'barcelona.png' },
+                { id: 9, name: 'Atletico Madrid', city: 'Madrid', logo: 'Atlético-Madrid.png' },
+                { id: 10, name: 'Sevilla', city: 'Sevilla', logo: 'sevilla.png' },
+                { id: 11, name: 'Valencia', city: 'Valencia', logo: 'valencia.png' },
+                { id: 12, name: 'Real Sociedad', city: 'San Sebastian', logo: 'real-sociedad.png' }
+            ],
+            'serie-a': [
+                { id: 13, name: 'Juventus', city: 'Turin', logo: 'juventus.png' },
+                { id: 14, name: 'AC Milan', city: 'Milan', logo: 'ac-milan.png' },
+                { id: 15, name: 'Inter Milan', city: 'Milan', logo: 'inter-milan.png' },
+                { id: 16, name: 'Roma', city: 'Rome', logo: 'as-roma.png' },
+                { id: 17, name: 'Napoli', city: 'Naples', logo: 'napoli.png' },
+                { id: 18, name: 'Lazio', city: 'Rome', logo: 'lazio.png' }
+            ],
+            'bundesliga': [
+                { id: 19, name: 'Bayern Munich', city: 'Munich', logo: 'bayern-munich.png' },
+                { id: 20, name: 'Borussia Dortmund', city: 'Dortmund', logo: 'borussia-dortmund.png' },
+                { id: 21, name: 'RB Leipzig', city: 'Leipzig', logo: 'rb-leipzig.png' },
+                { id: 22, name: 'Bayer Leverkusen', city: 'Leverkusen', logo: 'bayer-leverkusen.png' },
+                { id: 23, name: 'Eintracht Frankfurt', city: 'Frankfurt', logo: 'eintracht-frankfurt.png' },
+                { id: 24, name: 'Wolfsburg', city: 'Wolfsburg', logo: 'wolfsburg.png' }
+            ],
+            'ligue-1': [
+                { id: 25, name: 'Paris Saint-Germain', city: 'Paris', logo: 'paris-saint-germain.png' },
+                { id: 26, name: 'Marseille', city: 'Marseille', logo: 'marseille.png' },
+                { id: 27, name: 'Lyon', city: 'Lyon', logo: 'lyon.png' },
+                { id: 28, name: 'Monaco', city: 'Monaco', logo: 'monaco.png' },
+                { id: 29, name: 'Nice', city: 'Nice', logo: 'nice.png' },
+                { id: 30, name: 'Lille', city: 'Lille', logo: 'lille.png' }
+            ]
+        };
+
+        // Load and display league info
+        const league = JSON.parse(localStorage.getItem('selectedLeague') || '{}');
+        const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+        
+        if (league.name) {
+            document.getElementById('leagueInfo').innerHTML = `
+                <span class="travel-info">From: ${origin.city || 'Unknown'}</span> • 
+                <span class="league-info">${league.name} (${league.country})</span>
+            `;
+        }
+
+        // Load teams based on selected league
+        function loadTeams() {
+            const teamsGrid = document.getElementById('teamsGrid');
+            const teams = teamsData[league.id] || [];
+            
+            if (teams.length === 0) {
+                teamsGrid.innerHTML = '<p class="no-teams">No teams available for this league.</p>';
+                return;
+            }
+
+            teamsGrid.innerHTML = teams.map(team => `
+                <div class="team-card" data-team-id="${team.id}">
+                    <div class="team-logo">
+                        <img src="../static/img/teams/${team.logo}" 
+                             alt="${team.name}" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="team-logo-fallback" style="display: none; width: 60px; height: 60px; background: #F33455; color: white; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">
+                            ${team.name.charAt(0)}
+                        </div>
+                    </div>
+                    <h3>${team.name}</h3>
+                    <p class="team-city">${team.city}</p>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.team-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const teamId = this.dataset.teamId;
+                    const team = teams.find(t => t.id == teamId);
+                    
+                    localStorage.setItem('selectedTeam', JSON.stringify(team));
+                    window.location.href = 'select_dates.html';
+                });
+            });
+        }
+
+        // Debug function to check image loading
+        function debugImagePaths() {
+            console.log('🔍 Debugging team images...');
+            const teams = teamsData[league.id] || [];
+            teams.forEach(team => {
+                const imgPath = `../static/img/teams/${team.logo}`;
+                console.log(`${team.name}: ${imgPath}`);
+                
+                // Test if image exists
+                const img = new Image();
+                img.onload = () => console.log(`✅ ${team.name} image loaded successfully`);
+                img.onerror = () => console.log(`❌ ${team.name} image failed to load: ${imgPath}`);
+                img.src = imgPath;
+            });
+        }
+
+        // Initialize
+        loadTeams();
+        
+        // Run debug in console
+        setTimeout(debugImagePaths, 1000);
+    </script>
+</body>
+</html>

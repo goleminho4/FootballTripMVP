@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Origin - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+</head>
+<body>
+<!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step">1. Origin</div>
+            <div class="progress-step">2. League</div>
+            <div class="progress-step">3. Team</div>
+            <div class="progress-step">4. Match</div>
+            <div class="progress-step">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Where are you traveling from?</h1>
+                <p>Select your departure airport to start planning your football trip</p>
+            </div>
+
+            <div class="card">
+                <form id="originForm">
+                    <div class="form-group">
+                        <label for="origin">Departure Airport</label>
+                        <input type="text" 
+                               id="origin" 
+                               name="origin" 
+                               placeholder="Start typing airport name or code..." 
+                               autocomplete="off" 
+                               required>
+                        <div class="help-text">
+                            <span class="icon">💡</span>
+                            Try searching for: London, Paris, Madrid, Rome, Berlin, Amsterdam
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="continueBtn" disabled>
+                        Continue to League Selection →
+                    </button>
+                </form>
+            </div>
+
+            <!-- Popular airports for quick selection -->
+            <div class="popular-airports">
+                <h3>Popular Departure Cities</h3>
+                <div class="airport-grid">
+                    <div class="airport-option" data-code="LHR" data-city="London">
+                        <span class="airport-code">LHR</span>
+                        <span class="airport-name">London Heathrow</span>
+                    </div>
+                    <div class="airport-option" data-code="CDG" data-city="Paris">
+                        <span class="airport-code">CDG</span>
+                        <span class="airport-name">Paris Charles de Gaulle</span>
+                    </div>
+                    <div class="airport-option" data-code="MAD" data-city="Madrid">
+                        <span class="airport-code">MAD</span>
+                        <span class="airport-name">Madrid Barajas</span>
+                    </div>
+                    <div class="airport-option" data-code="FCO" data-city="Rome">
+                        <span class="airport-code">FCO</span>
+                        <span class="airport-name">Rome Fiumicino</span>
+                    </div>
+                    <div class="airport-option" data-code="AMS" data-city="Amsterdam">
+                        <span class="airport-code">AMS</span>
+                        <span class="airport-name">Amsterdam Schiphol</span>
+                    </div>
+                    <div class="airport-option" data-code="FRA" data-city="Frankfurt">
+                        <span class="airport-code">FRA</span>
+                        <span class="airport-name">Frankfurt Main</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        // Mock airport data for autocomplete
+        const airports = [
+            {code: 'LHR', name: 'London Heathrow', city: 'London', country: 'United Kingdom'},
+            {code: 'CDG', name: 'Paris Charles de Gaulle', city: 'Paris', country: 'France'},
+            {code: 'MAD', name: 'Madrid Barajas', city: 'Madrid', country: 'Spain'},
+            {code: 'FCO', name: 'Rome Fiumicino', city: 'Rome', country: 'Italy'},
+            {code: 'AMS', name: 'Amsterdam Schiphol', city: 'Amsterdam', country: 'Netherlands'},
+            {code: 'FRA', name: 'Frankfurt Main', city: 'Frankfurt', country: 'Germany'}
+        ];
+
+        // Setup autocomplete
+        $('#origin').autocomplete({
+            source: function(request, response) {
+                const matcher = new RegExp(request.term, "i");
+                response(airports.filter(airport => 
+                    matcher.test(airport.code) || 
+                    matcher.test(airport.name) || 
+                    matcher.test(airport.city)
+                ).map(airport => ({
+                    label: `${airport.code} - ${airport.name} (${airport.city})`,
+                    value: airport.code,
+                    airport: airport
+                })));
+            },
+            select: function(event, ui) {
+                $('#origin').val(ui.item.label);
+                $('#continueBtn').prop('disabled', false);
+                localStorage.setItem('selectedOrigin', JSON.stringify(ui.item.airport));
+                return false;
+            }
+        });
+
+        // Quick airport selection
+        $('.airport-option').click(function() {
+            const code = $(this).data('code');
+            const city = $(this).data('city');
+            const airport = airports.find(a => a.code === code);
+            
+            $('#origin').val(`${code} - ${airport.name} (${city})`);
+            $('#continueBtn').prop('disabled', false);
+            localStorage.setItem('selectedOrigin', JSON.stringify(airport));
+        });
+
+        // Form submission
+        $('#originForm').submit(function(e) {
+            e.preventDefault();
+            window.location.href = 'select_league.html';
+        });
+    </script>
+</body>
+</html>

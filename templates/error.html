@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+   <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step">1. Origin</div>
+            <div class="progress-step">2. League</div>
+            <div class="progress-step">3. Team</div>
+            <div class="progress-step">4. Match</div>
+            <div class="progress-step">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="error-page">
+                <div class="error-icon">⚠️</div>
+                <h1>Oops! Something went wrong</h1>
+                <p class="error-message" id="errorMessage">
+                    We're sorry, but something unexpected happened. Please try again.
+                </p>
+                
+                <div class="error-actions">
+                    <a href="index.html" class="btn btn-primary">🏠 Go to Home</a>
+                    <button onclick="history.back()" class="btn btn-secondary">← Go Back</button>
+                    <button onclick="location.reload()" class="btn btn-secondary">🔄 Refresh Page</button>
+                </div>
+                
+                <div class="error-help">
+                    <h3>Need Help?</h3>
+                    <p>If you continue experiencing issues, please:</p>
+                    <ul>
+                        <li>Check your internet connection</li>
+                        <li>Clear your browser cache</li>
+                        <li>Try using a different browser</li>
+                        <li>Contact our support team</li>
+                    </ul>
+                    
+                    <div class="support-contact">
+                        <strong>Support:</strong>
+                        <span>📧 support@footballtrip.com</span>
+                        <span>📞 +1-800-FOOTBALL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Football Trip Planner | University Project MVP</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Get error message from URL parameter or show default
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('message');
+        
+        if (errorMessage) {
+            document.getElementById('errorMessage').textContent = decodeURIComponent(errorMessage);
+        }
+        
+        // Track error for analytics
+        console.log('Error page displayed:', errorMessage || 'Unknown error');
+    </script>
+</body>
+</html>

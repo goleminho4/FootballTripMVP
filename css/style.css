@@ -1,0 +1,2507 @@
+/* Football Trip Planner - Simple & Clean CSS */
+/* Part 1: Reset, Base Styles, and Typography */
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Color Variables - Baby Blue & Soft Green */
+:root {
+    --baby-blue: #87CEEB;
+    --soft-green: #90EE90;
+    --dark-blue: #4682B4;
+    --dark-green: #32CD32;
+    --white: #FFFFFF;
+    --light-gray: #F8F9FA;
+    --medium-gray: #E9ECEF;
+    --text-gray: #6C757D;
+    --dark-gray: #495057;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography */
+h1 {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--dark-blue);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-gray);
+}
+
+a {
+    color: var(--dark-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--baby-blue);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--medium-gray);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--baby-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--dark-blue);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: var(--soft-green);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background: var(--dark-green);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--dark-gray);
+    border: 2px solid var(--medium-gray);
+}
+
+.btn-secondary:hover {
+    background: var(--light-gray);
+    border-color: var(--baby-blue);
+}
+
+.btn-large {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark-blue);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--baby-blue);
+}
+
+.help-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, var(--baby-blue), var(--dark-blue));
+    color: var(--white);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+}
+
+.nav-progress {
+    display: flex;
+    gap: 15px;
+}
+
+.progress-step {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.progress-step.active {
+    background: var(--white);
+    color: var(--dark-blue);
+}
+
+.progress-step.completed {
+    background: var(--soft-green);
+    color: var(--white);
+}
+
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+/* Page Headers */
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+}
+
+.highlight {
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--baby-blue), var(--dark-blue));
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+}
+
+.cta-button {
+    background: var(--soft-green);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(144, 238, 144, 0.3);
+}
+
+.cta-button:hover {
+    background: var(--dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(144, 238, 144, 0.4);
+}
+
+/* Part 2: Info Section, Auth, and League/Team Grids */
+
+/* Info Section */
+.info-section {
+    padding: 4rem 0;
+    background: var(--white);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    background: var(--light-gray);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.info-card p {
+    color: var(--text-gray);
+}
+
+/* Auth Pages */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--baby-blue), var(--dark-blue));
+    padding: 2rem;
+}
+
+.auth-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.auth-card h1 {
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+}
+
+.auth-card p {
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    text-align: left;
+}
+
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.auth-footer a {
+    color: var(--baby-blue);
+}
+
+.auth-footer a:hover {
+    color: var(--dark-blue);
+}
+
+/* League Grid */
+.leagues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.league-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--medium-gray);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.league-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--baby-blue);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.league-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-gray);
+    border-radius: 50%;
+}
+
+.league-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.league-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+}
+
+.league-country {
+    color: var(--text-gray);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.league-teams {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Team Grid */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.team-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--medium-gray);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.team-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--soft-green);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.team-logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-gray);
+    border-radius: 50%;
+}
+
+.team-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+}
+
+.team-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+}
+
+.team-city {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Airport Selection */
+.popular-airports {
+    margin-top: 3rem;
+}
+
+.popular-airports h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--dark-blue);
+}
+
+.airport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.airport-option {
+    background: var(--white);
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.airport-option:hover {
+    border-color: var(--baby-blue);
+    transform: translateY(-2px);
+}
+
+.airport-code {
+    font-weight: 700;
+    color: var(--baby-blue);
+    font-size: 1.1rem;
+    background: var(--light-gray);
+    padding: 0.5rem;
+    border-radius: 4px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.airport-name {
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Date Selection */
+.date-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.quick-dates {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.quick-dates h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.date-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.date-option {
+    background: var(--white);
+    border: 2px solid var(--medium-gray);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.date-option:hover {
+    background: var(--baby-blue);
+    color: var(--white);
+    border-color: var(--baby-blue);
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.back-link {
+    color: var(--baby-blue);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: var(--light-gray);
+    color: var(--dark-blue);
+}
+
+/* Footer */
+.footer {
+    background: var(--dark-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.footer p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Part 3: Match Cards, Flight Cards, and Hotel Cards */
+
+/* Match Cards */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.match-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 2px solid var(--medium-gray);
+    transition: all 0.3s ease;
+}
+
+.match-card:hover {
+    border-color: var(--baby-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.match-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.match-date {
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.match-competition {
+    background: var(--baby-blue);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.match-teams {
+    text-align: center;
+    margin: 1.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.vs {
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.match-venue {
+    text-align: center;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+}
+
+.stadium {
+    font-weight: 500;
+}
+
+.match-price {
+    text-align: center;
+    font-weight: 600;
+    color: var(--dark-green);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    background: rgba(144, 238, 144, 0.1);
+    border-radius: 8px;
+}
+
+.match-options {
+    border-top: 1px solid var(--medium-gray);
+    padding-top: 1.5rem;
+}
+
+.match-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nights-select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.select-match-btn {
+    width: 100%;
+}
+
+/* Trip Summary Card */
+.trip-summary-card,
+.trip-overview-card {
+    background: linear-gradient(135deg, var(--baby-blue), var(--dark-blue));
+    color: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.trip-summary-card h3,
+.trip-overview-card h2 {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.summary-row .label {
+    font-weight: 500;
+}
+
+.summary-row .value {
+    font-weight: 600;
+}
+
+/* Flight Cards */
+.flights-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.flight-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 2px solid var(--medium-gray);
+    transition: all 0.3s ease;
+}
+
+.flight-card:hover {
+    border-color: var(--baby-blue);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.airline strong {
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+}
+
+.flight-type {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    background: var(--light-gray);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.25rem;
+    display: inline-block;
+}
+
+.flight-price .price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-green);
+}
+
+.price-note {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.flight-route {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.departure,
+.arrival {
+    text-align: center;
+    flex: 1;
+}
+
+.departure .time,
+.arrival .time {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin-bottom: 0.25rem;
+}
+
+.departure .airport,
+.arrival .airport {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.departure .city,
+.arrival .city {
+    color: var(--text-gray);
+    font-size: 0.8rem;
+}
+
+.flight-info {
+    text-align: center;
+    flex: 1;
+    margin: 0 2rem;
+    position: relative;
+}
+
+.flight-path {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flight-line {
+    flex: 1;
+    height: 2px;
+    background: var(--baby-blue);
+}
+
+.plane-icon {
+    background: var(--white);
+    padding: 0.25rem;
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.duration {
+    color: var(--dark-blue);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.stops {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.flight-extras {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+.flight-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.detail-value {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+.flight-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature {
+    background: var(--soft-green);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.select-flight-btn {
+    width: 100%;
+}
+
+/* Part 4: Hotel Cards, Cost Summary, and Payment Forms */
+
+/* Hotel Cards */
+.hotels-section {
+    margin-bottom: 2rem;
+}
+
+.hotels-section h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.hotels-grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.hotel-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 2px solid var(--medium-gray);
+    transition: all 0.3s ease;
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 0;
+}
+
+.hotel-card:hover {
+    border-color: var(--soft-green);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hotel-image {
+    position: relative;
+    background: var(--light-gray);
+}
+
+.hotel-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.hotel-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.hotel-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hotel-info h4 {
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.hotel-distance {
+    color: var(--baby-blue);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.hotel-description {
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.hotel-amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.amenity {
+    background: var(--light-gray);
+    color: var(--dark-blue);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.hotel-pricing {
+    padding: 1.5rem;
+    text-align: center;
+    border-left: 1px solid var(--medium-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 150px;
+}
+
+.price-per-night {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+}
+
+.total-price {
+    color: var(--dark-green);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    background: rgba(144, 238, 144, 0.1);
+    border-radius: 8px;
+}
+
+.select-hotel-btn {
+    width: 100%;
+}
+
+/* Cost Summary */
+.cost-breakdown-section {
+    margin-bottom: 2rem;
+}
+
+.cost-breakdown-section h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.cost-items {
+    margin-bottom: 2rem;
+}
+
+.cost-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--medium-gray);
+}
+
+.cost-category {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cost-category .icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+}
+
+.category-info h4 {
+    color: var(--dark-blue);
+    margin-bottom: 0.25rem;
+}
+
+.category-info p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.cost-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+}
+
+.total-cost {
+    background: linear-gradient(135deg, var(--baby-blue), var(--dark-blue));
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.total-label {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.total-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Booking Actions */
+.booking-actions {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--medium-gray);
+}
+
+.booking-options h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.booking-options p {
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.individual-booking {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--medium-gray);
+}
+
+.individual-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+.booking-note {
+    color: var(--text-gray);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Payment Forms */
+.payment-form-section {
+    margin-bottom: 2rem;
+}
+
+.payment-form {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--medium-gray);
+}
+
+.payment-form h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-row .full-width {
+    grid-column: 1 / -1;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.terms-checkbox label {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
+
+.terms-checkbox a {
+    color: var(--baby-blue);
+    font-weight: 500;
+}
+
+.terms-checkbox a:hover {
+    color: var(--dark-blue);
+}
+
+/* Payment Summary */
+.payment-summary {
+    background: var(--light-gray);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--medium-gray);
+}
+
+.payment-summary h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.summary-items {
+    margin-bottom: 1rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-total {
+    border-top: 2px solid var(--baby-blue);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.payment-method {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Part 5: 2FA, Confirmation Page, and Responsive Design */
+
+/* 2FA Verification */
+.verification-section {
+    margin-bottom: 2rem;
+}
+
+.verification-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 3px solid #FFC107;
+}
+
+.verification-card h3 {
+    color: #FFC107;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.verification-input {
+    margin: 2rem 0;
+}
+
+.verification-input input {
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    max-width: 200px;
+    margin: 0 auto;
+    font-weight: 600;
+    border: 3px solid var(--medium-gray);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.verification-input input:focus {
+    border-color: #FFC107;
+}
+
+.verification-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Processing Animation */
+.processing-section {
+    margin-bottom: 2rem;
+}
+
+.processing-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.processing-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--medium-gray);
+    border-top: 4px solid var(--baby-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.processing-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.processing-card p {
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* Confirmation Page */
+.confirmation-page {
+    background: linear-gradient(135deg, var(--soft-green), var(--dark-green));
+    min-height: 100vh;
+    padding: 2rem 0;
+    color: var(--white);
+}
+
+.confirmation-page .container {
+    max-width: 900px;
+}
+
+.success-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.success-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+}
+
+.greek-message {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+    font-style: italic;
+}
+
+.confirmation-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Booking Reference */
+.booking-reference {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--dark-blue);
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.reference-card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+.reference-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--baby-blue);
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+    border: 2px dashed var(--baby-blue);
+}
+
+/* Trip Itinerary */
+.trip-itinerary {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--dark-gray);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.trip-itinerary h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.itinerary-section {
+    margin-top: 1.5rem;
+}
+
+.itinerary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--medium-gray);
+}
+
+.itinerary-item.match-highlight {
+    background: linear-gradient(135deg, var(--baby-blue), var(--dark-blue));
+    color: var(--white);
+}
+
+.item-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+}
+
+.item-content {
+    flex: 1;
+}
+
+.item-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-blue);
+}
+
+.itinerary-item.match-highlight .item-content h4 {
+    color: var(--white);
+}
+
+.confirmation-code {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-top: 0.5rem;
+}
+
+.itinerary-item.match-highlight .confirmation-code {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Payment Summary Confirmed */
+.payment-summary-confirmed {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--dark-gray);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.payment-summary-confirmed h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.summary-grid {
+    margin-bottom: 1rem;
+}
+
+/* Important Information */
+.important-info {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--dark-gray);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.important-info h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.info-item {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--medium-gray);
+}
+
+.info-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--dark-blue);
+}
+
+.info-item p {
+    margin: 0;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Confirmation Actions */
+.confirmation-actions {
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.confirmation-actions .btn {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--dark-blue);
+    border: 2px solid var(--white);
+}
+
+.confirmation-actions .btn:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Support Info */
+.support-info {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.support-info h4 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.support-info p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.contact-methods span {
+    color: var(--white);
+    font-weight: 500;
+}
+
+/* Error Page */
+.error-page {
+    text-align: center;
+    padding: 3rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: #FFC107;
+}
+
+.error-message {
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.error-help {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    border: 1px solid var(--medium-gray);
+}
+
+.error-help h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.error-help ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.error-help li {
+    padding: 0.5rem 0;
+    color: var(--text-gray);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.error-help li::before {
+    content: "•";
+    color: var(--baby-blue);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.support-contact {
+    background: var(--light-gray);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.support-contact span {
+    color: var(--dark-blue);
+    font-weight: 500;
+}
+
+/* jQuery UI Autocomplete */
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--white);
+    border: 2px solid var(--baby-blue);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.ui-menu-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--light-gray);
+    cursor: pointer;
+}
+
+.ui-menu-item:hover,
+.ui-menu-item.ui-state-focus {
+    background: var(--baby-blue);
+    color: var(--white);
+}
+
+.ui-menu-item:last-child {
+    border-bottom: none;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+/* No Results States */
+.no-matches,
+.no-teams {
+    text-align: center;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px dashed var(--medium-gray);
+    color: var(--text-gray);
+    margin: 2rem 0;
+}
+
+.no-matches h3,
+.no-teams h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--medium-gray);
+    border-top: 4px solid var(--baby-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-progress {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-features {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .leagues-grid,
+    .teams-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .matches-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hotel-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hotel-pricing {
+        border-left: none;
+        border-top: 1px solid var(--medium-gray);
+    }
+    
+    .flight-route {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .flight-info {
+        margin: 0;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .date-selection {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-methods {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .verification-actions,
+    .confirmation-actions,
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .individual-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .airport-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cost-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .cost-category {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .leagues-grid,
+    .teams-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .total-amount {
+        font-size: 2rem;
+    }
+    
+    .reference-number {
+        font-size: 1.5rem;
+    }
+    
+    .success-header h1 {
+        font-size: 2rem;
+    }
+    
+    .greek-message {
+        font-size: 1.5rem;
+    }
+    
+    .match-teams {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .airport-option {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.w-full { width: 100%; }
+
+/* End of CSS */
+
+/* API Integration Styles */
+
+/* Loading states */
+.loading-matches {
+    text-align: center;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px solid var(--baby-blue);
+    margin: 2rem 0;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--medium-gray);
+    border-top: 4px solid var(--baby-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* API badges */
+.api-badge,
+.demo-badge {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: var(--light-gray);
+}
+
+.api-badge {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.demo-badge {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+/* Match status indicators */
+.match-status {
+    background: var(--text-gray);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.match-card.match-finished {
+    opacity: 0.7;
+    border-color: var(--text-gray);
+}
+
+.match-card.match-finished .match-teams {
+    color: var(--text-gray);
+}
+
+/* Price note styling */
+.price-note {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    font-style: italic;
+    margin-top: 0.25rem;
+}
+
+/* API Error styling */
+.api-error {
+    text-align: center;
+    padding: 3rem;
+    background: #fff5f5;
+    border: 2px solid #fed7d7;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.api-error h3 {
+    color: #e53e3e;
+    margin-bottom: 1rem;
+}
+
+.error-details {
+    background: #fed7d7;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #744210;
+    margin: 1rem 0;
+    word-break: break-word;
+}
+
+.api-error .btn {
+    margin: 0.5rem;
+}
+
+/* Enhanced match cards for real data */
+.match-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.match-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--baby-blue), var(--soft-green));
+}
+
+.match-card.demo-data::before {
+    background: linear-gradient(90deg, #ffc107, #fd7e14);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .loading-matches,
+    .api-error {
+        padding: 2rem 1rem;
+    }
+    
+    .error-details {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+    
+    .api-error .btn {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Match Selection Page Enhancements - Add these to your existing style.css */
+
+/* Loading State - Clean */
+.loading-matches {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px solid var(--baby-blue);
+    margin: 32px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--medium-gray);
+    border-top: 4px solid var(--baby-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 24px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-matches h3 {
+    color: var(--dark-blue);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.loading-matches p {
+    color: var(--text-gray);
+    font-size: 1rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.api-status {
+    background: var(--light-gray);
+    color: var(--dark-blue);
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    border: 1px solid var(--medium-gray);
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Matches Header - Using your colors */
+.matches-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 32px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px solid var(--baby-blue);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.api-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    border: 2px solid;
+}
+
+.api-badge.real-data {
+    background: var(--white);
+    color: var(--dark-green);
+    border-color: var(--soft-green);
+}
+
+.api-badge.demo-data {
+    background: var(--white);
+    color: var(--dark-blue);
+    border-color: var(--baby-blue);
+}
+
+.matches-header p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Match Cards - Spacious and clean */
+.matches-grid {
+    display: grid;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.match-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 40px;
+    border: 2px solid var(--medium-gray);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.match-card:hover {
+    border-color: var(--baby-blue);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.match-card.real-api-data {
+    border-left: 6px solid var(--soft-green);
+}
+
+.match-card.demo-api-data {
+    border-left: 6px solid var(--baby-blue);
+}
+
+/* Match Header with League Emblem */
+.match-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.match-date {
+    font-weight: 600;
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.match-competition-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.league-emblem {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: var(--white);
+    padding: 4px;
+    border: 1px solid var(--medium-gray);
+}
+
+.competition-name {
+    background: var(--baby-blue);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.live-indicator, .demo-indicator {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.live-indicator {
+    background: var(--soft-green);
+    color: var(--white);
+}
+
+.demo-indicator {
+    background: var(--baby-blue);
+    color: var(--white);
+}
+
+/* Team Display - More spacious */
+.match-teams {
+    text-align: center;
+    margin: 32px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.team {
+    flex: 1;
+    max-width: 180px;
+}
+
+.team-name {
+    display: block;
+    padding: 20px 16px;
+    background: var(--light-gray);
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    color: var(--dark-gray);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.vs {
+    color: var(--text-gray);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+/* Venue Information */
+.match-venue {
+    text-align: center;
+    margin: 32px 0;
+    padding: 24px;
+    background: var(--light-gray);
+    border-radius: 8px;
+    border: 1px solid var(--medium-gray);
+}
+
+.stadium {
+    font-weight: 600;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.location {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+/* Price Display */
+.match-price {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 32px 0;
+    padding: 24px;
+    background: var(--soft-green);
+    color: var(--white);
+    border-radius: 8px;
+    border: 2px solid var(--dark-green);
+}
+
+/* Form Elements */
+.match-options {
+    border-top: 2px solid var(--light-gray);
+    padding-top: 32px;
+    margin-top: 32px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--dark-blue);
+    font-size: 1rem;
+}
+
+.nights-select {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 2px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--white);
+    color: var(--dark-gray);
+    transition: border-color 0.2s ease;
+}
+
+.nights-select:focus {
+    outline: none;
+    border-color: var(--baby-blue);
+}
+
+/* Primary Button - Using your color scheme */
+.select-match-btn {
+    width: 100%;
+    padding: 20px 24px;
+    background: var(--baby-blue);
+    color: var(--white);
+    border: 2px solid var(--dark-blue);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-match-btn:hover {
+    background: var(--dark-blue);
+    transform: translateY(-1px);
+}
+
+/* Fallback Section */
+.api-fallback {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 40px 24px;
+    text-align: center;
+    border: 2px dashed var(--baby-blue);
+    margin: 40px 0;
+}
+
+.fallback-header h3 {
+    color: var(--dark-blue);
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.fallback-header p {
+    color: var(--text-gray);
+    margin-bottom: 24px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.fallback-header .btn {
+    background: var(--baby-blue);
+    color: var(--white);
+    border: 2px solid var(--dark-blue);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+
+.fallback-header .btn:hover {
+    background: var(--dark-blue);
+    transform: translateY(-1px);
+}
+
+/* No Matches State */
+.no-matches {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px dashed var(--medium-gray);
+    margin: 40px 0;
+}
+
+.no-matches h3 {
+    color: var(--dark-blue);
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.no-matches p {
+    color: var(--text-gray);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+/* Responsive Design for Match Selection */
+@media (max-width: 768px) {
+    .loading-matches,
+    .api-fallback,
+    .no-matches {
+        padding: 32px 20px;
+        margin: 24px 0;
+    }
+
+    .match-card {
+        padding: 24px 20px;
+    }
+
+    .match-teams {
+        flex-direction: column;
+        gap: 20px;
+        font-size: 1.1rem;
+    }
+
+    .team {
+        max-width: 200px;
+    }
+
+    .match-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .matches-header {
+        padding: 24px 20px;
+    }
+
+    .vs {
+        font-size: 1rem;
+    }
+}

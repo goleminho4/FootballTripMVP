@@ -1,0 +1,119 @@
+id,name,league,country,stadium_id,stadium_name,city
+1,Arsenal,Premier League,England,1,Emirates Stadium,London
+2,Aston Villa,Premier League,England,2,Villa Park,Birmingham
+3,Bournemouth,Premier League,England,3,Vitality Stadium,Bournemouth
+4,Brentford,Premier League,England,4,Gtech Community Stadium,London
+5,Brighton,Premier League,England,5,Amex Stadium,Brighton
+6,Chelsea,Premier League,England,6,Stamford Bridge,London
+7,Crystal Palace,Premier League,England,7,Selhurst Park,London
+8,Everton,Premier League,England,8,Goodison Park,Liverpool
+9,Fulham,Premier League,England,9,Craven Cottage,London
+10,Liverpool,Premier League,England,10,Anfield,Liverpool
+11,Manchester City,Premier League,England,11,Etihad Stadium,Manchester
+12,Manchester United,Premier League,England,12,Old Trafford,Manchester
+13,Newcastle United,Premier League,England,13,St James' Park,Newcastle
+14,Nottingham Forest,Premier League,England,14,City Ground,Nottingham
+15,Southampton,Premier League,England,15,St Mary's Stadium,Southampton
+16,Tottenham Hotspur,Premier League,England,16,Tottenham Hotspur Stadium,London
+17,West Ham United,Premier League,England,17,London Stadium,London
+18,Wolverhampton Wanderers,Premier League,England,18,Molineux Stadium,Wolverhampton
+19,Leicester City,Premier League,England,19,King Power Stadium,Leicester
+20,Ipswich Town,Premier League,England,20,Portman Road,Ipswich
+21,Almería,La Liga,Spain,21,Power Horse Stadium,Almería
+22,Athletic Bilbao,La Liga,Spain,22,San Mamés,Bilbao
+23,Atlético Madrid,La Liga,Spain,23,Metropolitano Stadium,Madrid
+24,Barcelona,La Liga,Spain,24,Camp Nou,Barcelona
+25,Cádiz,La Liga,Spain,25,Nuevo Mirandilla,Cádiz
+26,Celta Vigo,La Liga,Spain,26,Balaídos,Vigo
+27,Getafe,La Liga,Spain,27,Coliseum Alfonso Pérez,Getafe
+28,Girona,La Liga,Spain,28,Montilivi,Girona
+29,Las Palmas,La Liga,Spain,29,Gran Canaria,Las Palmas
+30,Mallorca,La Liga,Spain,30,Son Moix,Mallorca
+31,Osasuna,La Liga,Spain,31,El Sadar,Pamplona
+32,Rayo Vallecano,La Liga,Spain,32,Vallecas,Madrid
+33,Real Betis,La Liga,Spain,33,Benito Villamarín,Seville
+34,Real Madrid,La Liga,Spain,34,Santiago Bernabéu,Madrid
+35,Real Sociedad,La Liga,Spain,35,Anoeta,San Sebastián
+36,Sevilla,La Liga,Spain,36,Ramón Sánchez Pizjuán,Seville
+37,Valencia,La Liga,Spain,37,Mestalla,Valencia
+38,Villarreal,La Liga,Spain,38,Estadio de la Cerámica,Villarreal
+39,Espanyol,La Liga,Spain,39,RCDE Stadium,Barcelona
+40,Valladolid,La Liga,Spain,40,José Zorrilla,Valladolid
+41,Augsburg,Bundesliga,Germany,41,WWK Arena,Augsburg
+42,Bayer Leverkusen,Bundesliga,Germany,42,BayArena,Leverkusen
+43,Bayern Munich,Bundesliga,Germany,43,Allianz Arena,Munich
+44,Bochum,Bundesliga,Germany,44,Vonovia Ruhrstadion,Bochum
+45,Borussia Dortmund,Bundesliga,Germany,45,Signal Iduna Park,Dortmund
+46,Borussia Mönchengladbach,Bundesliga,Germany,46,Borussia-Park,Mönchengladbach
+47,Eintracht Frankfurt,Bundesliga,Germany,47,Deutsche Bank Park,Frankfurt
+48,FC Cologne,Bundesliga,Germany,48,RheinEnergieStadion,Cologne
+49,Freiburg,Bundesliga,Germany,49,Europa-Park Stadion,Freiburg
+50,Hertha Berlin,Bundesliga,Germany,50,Olympiastadion,Berlin
+51,Hoffenheim,Bundesliga,Germany,51,PreZero Arena,Sinsheim
+52,Mainz 05,Bundesliga,Germany,52,MEWA Arena,Mainz
+53,RB Leipzig,Bundesliga,Germany,53,Red Bull Arena,Leipzig
+54,Schalke 04,Bundesliga,Germany,54,Veltins-Arena,Gelsenkirchen
+55,Union Berlin,Bundesliga,Germany,55,Stadion An der Alten Försterei,Berlin
+56,VfB Stuttgart,Bundesliga,Germany,56,MHPArena,Stuttgart
+57,Werder Bremen,Bundesliga,Germany,57,Weserstadion,Bremen
+58,Wolfsburg,Bundesliga,Germany,58,Volkswagen Arena,Wolfsburg
+59,AC Milan,Serie A,Italy,59,San Siro,Milan
+60,AS Roma,Serie A,Italy,60,Stadio Olimpico,Rome
+61,Atalanta,Serie A,Italy,61,Gewiss Stadium,Bergamo
+62,Bologna,Serie A,Italy,62,Renato Dall'Ara,Bologna
+63,Cagliari,Serie A,Italy,63,Unipol Domus,Cagliari
+64,Empoli,Serie A,Italy,64,Carlo Castellani,Empoli
+65,Fiorentina,Serie A,Italy,65,Artemio Franchi,Florence
+66,Genoa,Serie A,Italy,66,Luigi Ferraris,Genoa
+67,Hellas Verona,Serie A,Italy,67,Marcantonio Bentegodi,Verona
+68,Inter Milan,Serie A,Italy,59,San Siro,Milan
+69,Juventus,Serie A,Italy,69,Allianz Stadium,Turin
+70,Lazio,Serie A,Italy,60,Stadio Olimpico,Rome
+71,Lecce,Serie A,Italy,71,Via del Mare,Lecce
+72,Monza,Serie A,Italy,72,Brianteo,Monza
+73,Napoli,Serie A,Italy,73,Diego Armando Maradona,Naples
+74,Parma,Serie A,Italy,74,Ennio Tardini,Parma
+75,Sassuolo,Serie A,Italy,75,Mapei Stadium,Reggio Emilia
+76,Torino,Serie A,Italy,76,Olimpico Grande Torino,Turin
+77,Udinese,Serie A,Italy,77,Friuli,Udine
+78,Venezia,Serie A,Italy,78,Pier Luigi Penzo,Venice
+79,Lille,Ligue 1,France,79,Stade Pierre-Mauroy,Lille
+80,Lyon,Ligue 1,France,80,Groupama Stadium,Lyon
+81,Marseille,Ligue 1,France,81,Orange Vélodrome,Marseille
+82,Monaco,Ligue 1,France,82,Stade Louis II,Monaco
+83,Montpellier,Ligue 1,France,83,Stade de la Mosson,Montpellier
+84,Nantes,Ligue 1,France,84,Stade de la Beaujoire,Nantes
+85,Nice,Ligue 1,France,85,Allianz Riviera,Nice
+86,Paris Saint-Germain,Ligue 1,France,86,Parc des Princes,Paris
+87,Rennes,Ligue 1,France,87,Roazhon Park,Rennes
+88,Saint-Étienne,Ligue 1,France,88,Geoffroy-Guichard,Saint-Étienne
+89,Strasbourg,Ligue 1,France,89,Stade de la Meinau,Strasbourg
+90,Angers,Ligue 1,France,90,Stade Raymond Kopa,Angers
+91,Brest,Ligue 1,France,91,Stade Francis-Le Blé,Brest
+92,Clermont,Ligue 1,France,92,Stade Gabriel Montpied,Clermont-Ferrand
+93,Lens,Ligue 1,France,93,Stade Bollaert-Delelis,Lens
+94,Lorient,Ligue 1,France,94,Stade du Moustoir,Lorient
+95,Metz,Ligue 1,France,95,Stade Saint-Symphorien,Metz
+96,Reims,Ligue 1,France,96,Stade Auguste-Delaune,Reims
+97,Toulouse,Ligue 1,France,97,Stadium de Toulouse,Toulouse
+98,Auxerre,Ligue 1,France,98,Stade de l'Abbé-Deschamps,Auxerre
+99,Benfica,Primeira Liga,Portugal,99,Estádio da Luz,Lisbon
+100,Boavista,Primeira Liga,Portugal,100,Estádio do Bessa,Porto
+101,Braga,Primeira Liga,Portugal,101,Estádio Municipal de Braga,Braga
+102,Estoril,Primeira Liga,Portugal,102,Estádio António Coimbra da Mota,Estoril
+103,Famalicão,Primeira Liga,Portugal,103,Estádio Municipal 22 de Junho,Famalicão
+104,FC Porto,Primeira Liga,Portugal,104,Estádio do Dragão,Porto
+105,Gil Vicente,Primeira Liga,Portugal,105,Estádio Cidade de Barcelos,Barcelos
+106,Marítimo,Primeira Liga,Portugal,106,Estádio do Marítimo,Funchal
+107,Moreirense,Primeira Liga,Portugal,107,Estádio Comendador Joaquim de Almeida Freitas,Moreira de Cónegos
+108,Nacional,Primeira Liga,Portugal,108,Estádio da Madeira,Funchal
+109,Paços de Ferreira,Primeira Liga,Portugal,109,Estádio da Mata Real,Paços de Ferreira
+110,Portimonense,Primeira Liga,Portugal,110,Estádio Municipal de Portimão,Portimão
+111,Rio Ave,Primeira Liga,Portugal,111,Estádio do Rio Ave,Vila do Conde
+112,Santa Clara,Primeira Liga,Portugal,112,Estádio de São Miguel,Ponta Delgada
+113,Sporting CP,Primeira Liga,Portugal,113,Estádio José Alvalade,Lisbon
+114,Tondela,Primeira Liga,Portugal,114,Estádio João Cardoso,Tondela
+115,Vitória de Guimarães,Primeira Liga,Portugal,115,Estádio D. Afonso Henriques,Guimarães
+116,Vitória de Setúbal,Primeira Liga,Portugal,116,Estádio do Bonfim,Setúbal
+117,Casa Pia,Primeira Liga,Portugal,117,Estádio Pina Manique,Lisbon
+118,Farense,Primeira Liga,Portugal,118,Estádio de São Luís,Faro

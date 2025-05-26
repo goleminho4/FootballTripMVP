@@ -1,0 +1,61 @@
+id,date,competition,home_team_id,home_team_name,away_team_id,away_team_name,stadium_name,stadium_location
+1,2025-05-10,Premier League,1,Arsenal,10,Liverpool,Emirates Stadium,London
+2,2025-05-11,Premier League,11,Manchester City,12,Manchester United,Etihad Stadium,Manchester
+3,2025-05-12,Premier League,6,Chelsea,16,Tottenham Hotspur,Stamford Bridge,London
+4,2025-05-13,Premier League,13,Newcastle United,14,Nottingham Forest,St James' Park,Newcastle
+5,2025-05-14,Premier League,2,Aston Villa,5,Brighton,Villa Park,Birmingham
+6,2025-05-15,La Liga,24,Barcelona,34,Real Madrid,Camp Nou,Barcelona
+7,2025-05-16,La Liga,23,Atlético Madrid,36,Sevilla,Metropolitano Stadium,Madrid
+8,2025-05-17,La Liga,35,Real Sociedad,38,Villarreal,Anoeta,San Sebastián
+9,2025-05-18,La Liga,33,Real Betis,28,Girona,Benito Villamarín,Seville
+10,2025-05-19,La Liga,22,Athletic Bilbao,37,Valencia,San Mamés,Bilbao
+11,2025-05-20,Bundesliga,43,Bayern Munich,45,Borussia Dortmund,Allianz Arena,Munich
+12,2025-05-21,Bundesliga,53,RB Leipzig,42,Bayer Leverkusen,Red Bull Arena,Leipzig
+13,2025-05-22,Bundesliga,47,Eintracht Frankfurt,55,Union Berlin,Deutsche Bank Park,Frankfurt
+14,2025-05-23,Bundesliga,56,VfB Stuttgart,58,Wolfsburg,MHPArena,Stuttgart
+15,2025-05-24,Bundesliga,46,Borussia Mönchengladbach,57,Werder Bremen,Borussia-Park,Mönchengladbach
+16,2025-05-25,Serie A,68,Inter Milan,59,AC Milan,San Siro,Milan
+17,2025-05-26,Serie A,69,Juventus,60,AS Roma,Allianz Stadium,Turin
+18,2025-05-27,Serie A,73,Napoli,70,Lazio,Diego Armando Maradona,Naples
+19,2025-05-28,Serie A,61,Atalanta,65,Fiorentina,Gewiss Stadium,Bergamo
+20,2025-05-29,Serie A,62,Bologna,67,Hellas Verona,Renato Dall'Ara,Bologna
+21,2025-05-30,Ligue 1,86,Paris Saint-Germain,81,Marseille,Parc des Princes,Paris
+22,2025-05-31,Ligue 1,80,Lyon,82,Monaco,Groupama Stadium,Lyon
+23,2025-06-01,Ligue 1,79,Lille,87,Rennes,Stade Pierre-Mauroy,Lille
+24,2025-06-02,Ligue 1,85,Nice,83,Montpellier,Allianz Riviera,Nice
+25,2025-06-03,Ligue 1,93,Lens,89,Strasbourg,Stade Bollaert-Delelis,Lens
+26,2025-06-04,Primeira Liga,99,Benfica,113,Sporting CP,Estádio da Luz,Lisbon
+27,2025-06-05,Primeira Liga,104,FC Porto,101,Braga,Estádio do Dragão,Porto
+28,2025-06-06,Primeira Liga,115,Vitória de Guimarães,100,Boavista,Estádio D. Afonso Henriques,Guimarães
+29,2025-06-07,Primeira Liga,112,Santa Clara,117,Casa Pia,Estádio de São Miguel,Ponta Delgada
+30,2025-06-08,Primeira Liga,118,Farense,105,Gil Vicente,Estádio de São Luís,Faro
+31,2025-06-10,Premier League,10,Liverpool,6,Chelsea,Anfield,Liverpool
+32,2025-06-11,Premier League,16,Tottenham Hotspur,1,Arsenal,Tottenham Hotspur Stadium,London
+33,2025-06-12,Premier League,12,Manchester United,11,Manchester City,Old Trafford,Manchester
+34,2025-06-13,Premier League,5,Brighton,13,Newcastle United,Amex Stadium,Brighton
+35,2025-06-14,Premier League,14,Nottingham Forest,2,Aston Villa,City Ground,Nottingham
+36,2025-06-15,La Liga,34,Real Madrid,23,Atlético Madrid,Santiago Bernabéu,Madrid
+37,2025-06-16,La Liga,36,Sevilla,24,Barcelona,Ramón Sánchez Pizjuán,Seville
+38,2025-06-17,La Liga,38,Villarreal,33,Real Betis,Estadio de la Cerámica,Villarreal
+39,2025-06-18,La Liga,28,Girona,22,Athletic Bilbao,Montilivi,Girona
+40,2025-06-19,La Liga,37,Valencia,35,Real Sociedad,Mestalla,Valencia
+41,2025-06-20,Bundesliga,45,Borussia Dortmund,53,RB Leipzig,Signal Iduna Park,Dortmund
+42,2025-06-21,Bundesliga,42,Bayer Leverkusen,43,Bayern Munich,BayArena,Leverkusen
+43,2025-06-22,Bundesliga,55,Union Berlin,56,VfB Stuttgart,Stadion An der Alten Försterei,Berlin
+44,2025-06-23,Bundesliga,58,Wolfsburg,46,Borussia Mönchengladbach,Volkswagen Arena,Wolfsburg
+45,2025-06-24,Bundesliga,57,Werder Bremen,47,Eintracht Frankfurt,Weserstadion,Bremen
+46,2025-06-25,Serie A,59,AC Milan,69,Juventus,San Siro,Milan
+47,2025-06-26,Serie A,60,AS Roma,73,Napoli,Stadio Olimpico,Rome
+48,2025-06-27,Serie A,70,Lazio,61,Atalanta,Stadio Olimpico,Rome
+49,2025-06-28,Serie A,65,Fiorentina,62,Bologna,Artemio Franchi,Florence
+50,2025-06-29,Serie A,67,Hellas Verona,68,Inter Milan,Marcantonio Bentegodi,Verona
+51,2025-06-30,Ligue 1,81,Marseille,80,Lyon,Orange Vélodrome,Marseille
+52,2025-07-01,Ligue 1,82,Monaco,79,Lille,Stade Louis II,Monaco
+53,2025-07-02,Ligue 1,87,Rennes,85,Nice,Roazhon Park,Rennes
+54,2025-07-03,Ligue 1,83,Montpellier,93,Lens,Stade de la Mosson,Montpellier
+55,2025-07-04,Ligue 1,89,Strasbourg,86,Paris Saint-Germain,Stade de la Meinau,Strasbourg
+56,2025-07-05,Primeira Liga,113,Sporting CP,104,FC Porto,Estádio José Alvalade,Lisbon
+57,2025-07-06,Primeira Liga,101,Braga,115,Vitória de Guimarães,Estádio Municipal de Braga,Braga
+58,2025-07-07,Primeira Liga,100,Boavista,112,Santa Clara,Estádio do Bessa,Porto
+59,2025-07-08,Primeira Liga,117,Casa Pia,118,Farense,Estádio Pina Manique,Lisbon
+60,2025-07-09,Primeira Liga,105,Gil Vicente,99,Benfica,Estádio Cidade de Barcelos,Barcelos

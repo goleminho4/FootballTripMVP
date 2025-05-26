@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select League - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step active">2. League</div>
+            <div class="progress-step">3. Team</div>
+            <div class="progress-step">4. Match</div>
+            <div class="progress-step">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Choose Your League</h1>
+                <p id="originInfo">Traveling from: <span class="highlight">Loading...</span></p>
+            </div>
+
+            <div class="leagues-grid">
+                <div class="league-card" data-league="premier-league">
+                    <div class="league-logo">
+                        <img src="../static/img/leagues/premierleague.png" alt="Premier League" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiMzN0Y0QTIiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDVMMzUgMzBINUwyMCA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cgo8L3N2Zz4K'">
+                    </div>
+                    <h3>Premier League</h3>
+                    <p class="league-country">England</p>
+                    <p class="league-teams">20 teams • English clubs</p>
+                </div>
+
+                <div class="league-card" data-league="la-liga">
+                    <div class="league-logo">
+                        <img src="../static/img/leagues/laliga.png" alt="La Liga" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiNGRjc0MzMiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDVMMzUgMzBINUwyMCA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cgo8L3N2Zz4K'">
+                    </div>
+                    <h3>La Liga</h3>
+                    <p class="league-country">Spain</p>
+                    <p class="league-teams">20 teams • Spanish clubs</p>
+                </div>
+
+                <div class="league-card" data-league="serie-a">
+                    <div class="league-logo">
+                        <img src="../static/img/leagues/seriea.png" alt="Serie A" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiMwNzg5RkYiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDVMMzUgMzBINUwyMCA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cgo8L3N2Zz4K'">
+                    </div>
+                    <h3>Serie A</h3>
+                    <p class="league-country">Italy</p>
+                    <p class="league-teams">20 teams • Italian clubs</p>
+                </div>
+
+                <div class="league-card" data-league="bundesliga">
+                    <div class="league-logo">
+                        <img src="../static/img/leagues/bundesliga.png" alt="Bundesliga" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiNGRkNCMTEiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDVMMzUgMzBINUwyMCA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cgo8L3N2Zz4K'">
+                    </div>
+                    <h3>Bundesliga</h3>
+                    <p class="league-country">Germany</p>
+                    <p class="league-teams">18 teams • German clubs</p>
+                </div>
+
+                <div class="league-card" data-league="ligue-1">
+                    <div class="league-logo">
+                        <img src="../static/img/leagues/ligue1.png" alt="Ligue 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiM5MzMzRUEiLz4KPHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDVMMzUgMzBINUwyMCA1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cgo8L3N2Zz4K'">
+                    </div>
+                    <h3>Ligue 1</h3>
+                    <p class="league-country">France</p>
+                    <p class="league-teams">20 teams • French clubs</p>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="home.html" class="btn btn-secondary">← Back</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Display selected origin
+        const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+        if (origin.city) {
+            document.getElementById('originInfo').innerHTML = `Traveling from: <span class="highlight">${origin.city} (${origin.code})</span>`;
+        }
+
+        // League selection
+        document.querySelectorAll('.league-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const leagueId = this.dataset.league;
+                const leagueName = this.querySelector('h3').textContent;
+                const leagueCountry = this.querySelector('.league-country').textContent;
+                
+                localStorage.setItem('selectedLeague', JSON.stringify({
+                    id: leagueId,
+                    name: leagueName,
+                    country: leagueCountry
+                }));
+                
+                window.location.href = 'select_team.html';
+            });
+        });
+    </script>
+</body>
+</html>

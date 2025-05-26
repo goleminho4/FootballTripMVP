@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Match - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <style>
+        /* Clean and Simple Styles with Original Color Scheme */
+        :root {
+            --baby-blue: #87CEEB;
+            --soft-green: #90EE90;
+            --dark-blue: #4682B4;
+            --dark-green: #32CD32;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #E9ECEF;
+            --text-gray: #6C757D;
+            --dark-gray: #495057;
+            --black: #2C3E50;
+        }
+
+        /* Loading State - Clean and Simple */
+        .loading-matches {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 2px solid var(--baby-blue);
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--medium-gray);
+            border-top: 4px solid var(--baby-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-matches h3 {
+            color: var(--dark-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .loading-matches p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* API Status */
+        .api-status {
+            background: var(--light-gray);
+            color: var(--dark-blue);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            border: 1px solid var(--medium-gray);
+        }
+
+        /* Clean Matches Header */
+        .matches-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 2px solid var(--baby-blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Simple API Badges */
+        .api-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 2px solid;
+        }
+
+        .api-badge.real-data {
+            background: var(--soft-green);
+            color: var(--black);
+            border-color: var(--dark-green);
+        }
+
+        .api-badge.demo-data {
+            background: var(--baby-blue);
+            color: var(--black);
+            border-color: var(--dark-blue);
+        }
+
+        .matches-header p {
+            color: var(--text-gray);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Clean Match Cards */
+        .matches-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .match-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px solid var(--medium-gray);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: none; /* Remove hover effects from cards */
+        }
+
+        .match-card.real-api-data {
+            border-color: var(--dark-green);
+            border-left: 6px solid var(--soft-green);
+        }
+
+        .match-card.demo-api-data {
+            border-color: var(--dark-blue);
+            border-left: 6px solid var(--baby-blue);
+        }
+
+        /* Simple Match Header */
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .match-date {
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 1.1rem;
+        }
+
+        .match-competition {
+            background: var(--baby-blue);
+            color: var(--black);
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--dark-blue);
+        }
+
+        /* Clean Indicators */
+        .live-indicator, .demo-indicator {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .live-indicator {
+            background: var(--soft-green);
+            color: var(--black);
+            border: 1px solid var(--dark-green);
+        }
+
+        .demo-indicator {
+            background: var(--baby-blue);
+            color: var(--black);
+            border: 1px solid var(--dark-blue);
+        }
+
+        /* Simple Team Display */
+        .match-teams {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .team {
+            flex: 1;
+        }
+
+        .team-name {
+            display: block;
+            padding: 1rem;
+            background: var(--light-gray);
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            color: var(--black);
+        }
+
+        .vs {
+            color: var(--text-gray);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        /* Clean Venue */
+        .match-venue {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            border: 1px solid var(--medium-gray);
+        }
+
+        .stadium {
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .location {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Simple Pricing */
+        .match-price {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--soft-green);
+            color: var(--black);
+            border-radius: 8px;
+            border: 2px solid var(--dark-green);
+        }
+
+        /* Clean Form Elements */
+        .match-options {
+            border-top: 2px solid var(--light-gray);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .nights-select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .nights-select:focus {
+            outline: none;
+            border-color: var(--baby-blue);
+        }
+
+        /* ONLY Buttons Get Hover Effects */
+        .select-match-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--baby-blue);
+            color: var(--black);
+            border: 2px solid var(--dark-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .select-match-btn:hover {
+            background: var(--dark-blue);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .select-match-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Fallback Section */
+        .api-fallback {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px dashed var(--baby-blue);
+            margin: 2rem 0;
+        }
+
+        .fallback-header h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .fallback-header p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .fallback-header .btn {
+            background: var(--baby-blue);
+            color: var(--black);
+            border: 2px solid var(--dark-blue);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .fallback-header .btn:hover {
+            background: var(--dark-blue);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        /* No Matches State */
+        .no-matches {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 2px dashed var(--medium-gray);
+            margin: 2rem 0;
+        }
+
+        .no-matches h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .no-matches p {
+            color: var(--text-gray);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation Button Hover Effects */
+        .btn {
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--medium-gray);
+            border-color: var(--text-gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .loading-matches,
+            .api-fallback,
+            .no-matches {
+                padding: 2rem 1rem;
+                margin: 1rem 0;
+            }
+
+            .match-card {
+                padding: 1.5rem;
+            }
+
+            .match-teams {
+                flex-direction: column;
+                gap: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .match-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .matches-header {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   <!-- Updated Navigation with Clickable Football Logo -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step completed">3. Team</div>
+            <div class="progress-step active">4. Match</div>
+            <div class="progress-step">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Available Matches</h1>
+                <p id="searchInfo">Loading matches...</p>
+            </div>
+
+            <div id="matchesGrid" class="matches-grid">
+                <!-- Matches will be loaded here -->
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="select_dates.html" class="btn btn-secondary">← Back to Dates</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// 🔧 VERCEL-READY API CONFIGURATION 
+function getApiBaseUrl() {
+    const hostname = window.location.hostname;
+    
+    // Local development
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '') {
+        return 'http://localhost:5000';
+    }
+    
+    // Vercel production - uses current domain
+    return window.location.origin;
+}
+
+const API_BASE_URL = getApiBaseUrl();
+console.log('🔗 API Base URL detected:', API_BASE_URL);
+        // Updated loadMatches function to call Flask backend
+        async function loadMatches() {
+            const matchesGrid = document.getElementById('matchesGrid');
+            const team = JSON.parse(localStorage.getItem('selectedTeam') || '{}');
+            const dates = JSON.parse(localStorage.getItem('selectedDates') || '{}');
+            const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+            
+            // Update search info
+            if (team.name && dates.from && dates.to) {
+                document.getElementById('searchInfo').innerHTML = `
+                    <span class="travel-info">From: ${origin.city || 'Unknown'}</span> • 
+                    <span class="team-info">${team.name} matches</span> • 
+                    <span class="date-info">${dates.from} to ${dates.to}</span>
+                `;
+            }
+            
+            // Show loading state
+            matchesGrid.innerHTML = `
+                <div class="loading-matches">
+                    <div class="loading-spinner"></div>
+                    <h3>🔍 Searching for ${team.name} matches...</h3>
+                    <p>Connecting to Football Data API via backend...</p>
+                    <div class="api-status" id="apiStatus">Initializing...</div>
+                </div>
+            `;
+            
+            if (!team.name) {
+                matchesGrid.innerHTML = `
+                    <div class="no-matches">
+                        <h3>No team selected</h3>
+                        <p>Please go back and select a team first.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                // Update status
+                updateApiStatus('Connecting to backend API...');
+                
+                // Build API URL
+                const apiUrl = new URL(`${API_BASE_URL}/api/matches`);
+                apiUrl.searchParams.append('team', team.name);
+                
+                if (dates.from) {
+                    apiUrl.searchParams.append('dateFrom', dates.from);
+                }
+                if (dates.to) {
+                    apiUrl.searchParams.append('dateTo', dates.to);
+                }
+                
+                updateApiStatus('Fetching match data...');
+                
+                // Call Flask backend
+                const response = await fetch(apiUrl.toString());
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateApiStatus(`✅ Success! Found ${data.total} matches from ${data.source}`);
+                    
+                    // Show matches
+                    displayMatches(data.matches, data.source);
+                } else {
+                    throw new Error(data.error || 'Unknown API error');
+                }
+                
+            } catch (error) {
+                console.error('Backend API Error:', error);
+                updateApiStatus(`❌ Backend API failed: ${error.message}`);
+                
+                // Show fallback
+                setTimeout(() => {
+                    showFallbackData(team.name);
+                }, 2000);
+            }
+        }
+
+        function updateApiStatus(message) {
+            const statusElement = document.getElementById('apiStatus');
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+        }
+
+        function displayMatches(matches, source) {
+            const matchesGrid = document.getElementById('matchesGrid');
+            
+            if (!matches || matches.length === 0) {
+                matchesGrid.innerHTML = `
+                    <div class="no-matches">
+                        <h3>No matches found</h3>
+                        <p>No upcoming matches found for this team in the selected date range.</p>
+                        <p>Try adjusting your date range or selecting a different team.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Create source indicator
+            const sourceIndicator = source === 'football-data.org' ? 
+                '<div class="api-badge real-data">🔴 LIVE DATA</div>' : 
+                '<div class="api-badge demo-data">⚠️ DEMO DATA</div>';
+            
+            matchesGrid.innerHTML = `
+                <div class="matches-header">
+                    ${sourceIndicator}
+                    <p>Found ${matches.length} upcoming matches</p>
+                </div>
+                ${matches.map(match => createMatchCard(match, source)).join('')}
+            `;
+            
+            // Add click handlers for match selection
+            document.querySelectorAll('.select-match-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const matchId = this.dataset.matchId;
+                    const match = matches.find(m => m.id == matchId);
+                    const nights = document.getElementById(`nights-${matchId}`).value;
+                    
+                    localStorage.setItem('selectedMatch', JSON.stringify({
+                        ...match,
+                        nights: parseInt(nights),
+                        source: source
+                    }));
+                    
+                    window.location.href = 'select_transport.html';
+                });
+            });
+        }
+
+        function createMatchCard(match, source) {
+            const sourceClass = source === 'football-data.org' ? 'real-api-data' : 'demo-api-data';
+            
+            // League image handling
+            let leagueDisplay = '';
+            if (match.competitionEmblem && source === 'football-data.org') {
+                leagueDisplay = `<img src="${match.competitionEmblem}" alt="${match.competition}" class="league-emblem">`;
+            } else {
+                const leagueImage = getLeagueImage(match.competition);
+                if (leagueImage) {
+                    leagueDisplay = `<img src="${leagueImage}" alt="${match.competition}" class="league-emblem">`;
+                } else {
+                    leagueDisplay = `<span class="competition-name">${match.competition}</span>`;
+                }
+            }
+            
+            // Team crest handling
+            function getTeamCrestHtml(teamName, teamCrest, isHome) {
+                let crestHtml = '';
+                
+                if (teamCrest && source === 'football-data.org') {
+                    // Real API data with team crest
+                    crestHtml = `<img src="${teamCrest}" alt="${teamName}" class="team-crest" onerror="this.src='${getTeamImageFallback(teamName)}'">`;
+                } else {
+                    // Fallback to local team images
+                    const localImage = getTeamImageFallback(teamName);
+                    if (localImage) {
+                        crestHtml = `<img src="${localImage}" alt="${teamName}" class="team-crest">`;
+                    } else {
+                        crestHtml = `<div class="team-crest-placeholder">${teamName.charAt(0)}</div>`;
+                    }
+                }
+                
+                return crestHtml;
+            }
+            
+            return `
+                <div class="match-card ${sourceClass}">
+                    <div class="match-header">
+                        <div class="match-date">${formatDate(match.date)} at ${match.time}</div>
+                        <div class="match-competition-container">
+                            ${leagueDisplay}
+                            ${source === 'football-data.org' ? '<div class="live-indicator">🔴 LIVE</div>' : '<div class="demo-indicator">📋 DEMO</div>'}
+                        </div>
+                    </div>
+                    
+                    <div class="match-teams">
+                        <div class="team home-team">
+                            ${getTeamCrestHtml(match.homeTeam, match.homeTeamCrest, true)}
+                            <span class="team-name">${match.homeTeam}</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team away-team">
+                            ${getTeamCrestHtml(match.awayTeam, match.awayTeamCrest, false)}
+                            <span class="team-name">${match.awayTeam}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="match-venue">
+                        <span class="stadium">${match.stadium}</span>
+                        <span class="location">${match.city}, ${match.country}</span>
+                    </div>
+                    
+                    <div class="match-price">
+                        From ${match.currency} ${match.minPrice} - ${match.maxPrice}
+                    </div>
+                    
+                    <div class="match-options">
+                        <div class="form-group">
+                            <label for="nights-${match.id}">Nights to stay:</label>
+                            <select id="nights-${match.id}" class="nights-select">
+                                <option value="1">1 night</option>
+                                <option value="2" selected>2 nights</option>
+                                <option value="3">3 nights</option>
+                                <option value="4">4 nights</option>
+                                <option value="5">5 nights</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-primary select-match-btn" 
+                                data-match-id="${match.id}">
+                            Select This Match
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to get local league images for fallback
+        function getLeagueImage(competitionName) {
+            const leagueImages = {
+                'Premier League': '../static/img/leagues/premierleague.png',
+                'La Liga': '../static/img/leagues/laliga.png',
+                'Serie A': '../static/img/leagues/seriea.png',
+                'Bundesliga': '../static/img/leagues/bundesliga.png',
+                'Ligue 1': '../static/img/leagues/ligue1.png',
+                'Primera División': '../static/img/leagues/laliga.png'
+            };
+            
+            return leagueImages[competitionName] || null;
+        }
+
+        // Function to get local team images for fallback
+        function getTeamImageFallback(teamName) {
+            // Map team names to your local image files
+            const teamImages = {
+                // Premier League
+                'Arsenal': '../static/img/teams/arsenal.png',
+                'Chelsea': '../static/img/teams/chelsea.png',
+                'Liverpool': '../static/img/teams/liverpool.png',
+                'Manchester City': '../static/img/teams/manchester-city.png',
+                'Manchester United': '../static/img/teams/manchester-united.png',
+                'Tottenham': '../static/img/teams/tottenham.png',
+                'Tottenham Hotspur': '../static/img/teams/tottenham.png',
+                
+                // La Liga
+                'Real Madrid': '../static/img/teams/real-madrid.png',
+                'Barcelona': '../static/img/teams/barcelona.png',
+                'Atletico Madrid': '../static/img/teams/atletico-madrid.png',
+                'Sevilla': '../static/img/teams/sevilla.png',
+                'Valencia': '../static/img/teams/valencia.png',
+                'Real Sociedad': '../static/img/teams/real-sociedad.png',
+                'Valencia CF': '../static/img/teams/valencia.png',
+                'FC Barcelona': '../static/img/teams/barcelona.png',
+                
+                // Serie A
+                'Juventus': '../static/img/teams/juventus.png',
+                'AC Milan': '../static/img/teams/ac-milan.png',
+                'Inter Milan': '../static/img/teams/inter-milan.png',
+                'Roma': '../static/img/teams/roma.png',
+                'Napoli': '../static/img/teams/napoli.png',
+                'Lazio': '../static/img/teams/lazio.png',
+                
+                // Bundesliga
+                'Bayern Munich': '../static/img/teams/bayern-munich.png',
+                'Borussia Dortmund': '../static/img/teams/borussia-dortmund.png',
+                'RB Leipzig': '../static/img/teams/rb-leipzig.png',
+                'Bayer Leverkusen': '../static/img/teams/bayer-leverkusen.png',
+                'Eintracht Frankfurt': '../static/img/teams/eintracht-frankfurt.png',
+                'Wolfsburg': '../static/img/teams/wolfsburg.png',
+                
+                // Ligue 1
+                'Paris Saint-Germain': '../static/img/teams/psg.png',
+                'Marseille': '../static/img/teams/marseille.png',
+                'Lyon': '../static/img/teams/lyon.png',
+                'Monaco': '../static/img/teams/monaco.png',
+                'Nice': '../static/img/teams/nice.png',
+                'Lille': '../static/img/teams/lille.png'
+            };
+            
+            return teamImages[teamName] || null;
+        }
+
+        function showFallbackData(teamName) {
+            const matchesGrid = document.getElementById('matchesGrid');
+            
+            matchesGrid.innerHTML = `
+                <div class="api-fallback">
+                    <div class="fallback-header">
+                        <h3>⚠️ Using Demo Data</h3>
+                        <p>Backend API connection failed. Showing demonstration matches.</p>
+                        <button class="btn btn-secondary" onclick="location.reload()">🔄 Try Again</button>
+                    </div>
+                </div>
+            `;
+            
+            // Use original mock data from your existing code
+            const mockMatches = generateMockMatches(teamName);
+            displayMatches(mockMatches, 'frontend_fallback');
+        }
+
+        function generateMockMatches(teamName) {
+            const baseDate = new Date();
+            baseDate.setDate(baseDate.getDate() + 7); // Start from next week
+            
+            const mockOpponents = {
+                'Arsenal': ['Chelsea', 'Liverpool', 'Manchester United'],
+                'Chelsea': ['Arsenal', 'Tottenham', 'Manchester City'],
+                'Liverpool': ['Arsenal', 'Chelsea', 'Manchester United'],
+                'Manchester City': ['Arsenal', 'Liverpool', 'Chelsea'],
+                'Manchester United': ['Arsenal', 'Chelsea', 'Liverpool'],
+                'Tottenham': ['Arsenal', 'Chelsea', 'Liverpool'],
+                'Real Madrid': ['Barcelona', 'Atletico Madrid', 'Sevilla'],
+                'Barcelona': ['Real Madrid', 'Valencia', 'Atletico Madrid'],
+                'Atletico Madrid': ['Real Madrid', 'Barcelona', 'Sevilla'],
+                'Bayern Munich': ['Borussia Dortmund', 'RB Leipzig', 'Bayer Leverkusen'],
+                'Borussia Dortmund': ['Bayern Munich', 'RB Leipzig', 'Bayer Leverkusen']
+            };
+            
+            const opponents = mockOpponents[teamName] || ['Team A', 'Team B', 'Team C'];
+            const mockMatches = [];
+            
+            for (let i = 0; i < opponents.length; i++) {
+                const matchDate = new Date(baseDate);
+                matchDate.setDate(baseDate.getDate() + (i * 7));
+                
+                const mockMatch = {
+                    id: `mock_${i + 1}`,
+                    homeTeam: i % 2 === 0 ? teamName : opponents[i],
+                    awayTeam: i % 2 === 0 ? opponents[i] : teamName,
+                    date: matchDate.toISOString().split('T')[0],
+                    time: ['15:00', '17:30', '20:00'][i % 3],
+                    competition: getCompetitionForTeam(teamName),
+                    stadium: getStadiumForTeam(i % 2 === 0 ? teamName : opponents[i]),
+                    city: getCityForTeam(i % 2 === 0 ? teamName : opponents[i]),
+                    country: getCountryForTeam(teamName),
+                    minPrice: 65 + (i * 10),
+                    maxPrice: 180 + (i * 20),
+                    currency: 'EUR',
+                    status: 'SCHEDULED',
+                    source: 'frontend_fallback'
+                };
+                
+                mockMatches.push(mockMatch);
+            }
+            
+            return mockMatches;
+        }
+
+        function getCompetitionForTeam(teamName) {
+            const competitions = {
+                'Arsenal': 'Premier League',
+                'Chelsea': 'Premier League',
+                'Liverpool': 'Premier League',
+                'Manchester City': 'Premier League',
+                'Manchester United': 'Premier League',
+                'Tottenham': 'Premier League',
+                'Real Madrid': 'La Liga',
+                'Barcelona': 'La Liga',
+                'Atletico Madrid': 'La Liga',
+                'Bayern Munich': 'Bundesliga',
+                'Borussia Dortmund': 'Bundesliga'
+            };
+            return competitions[teamName] || 'Premier League';
+        }
+
+        function getStadiumForTeam(teamName) {
+            const stadiums = {
+                'Arsenal': 'Emirates Stadium',
+                'Chelsea': 'Stamford Bridge',
+                'Liverpool': 'Anfield',
+                'Manchester City': 'Etihad Stadium',
+                'Manchester United': 'Old Trafford',
+                'Tottenham': 'Tottenham Hotspur Stadium',
+                'Real Madrid': 'Santiago Bernabéu',
+                'Barcelona': 'Camp Nou',
+                'Atletico Madrid': 'Wanda Metropolitano',
+                'Bayern Munich': 'Allianz Arena',
+                'Borussia Dortmund': 'Signal Iduna Park'
+            };
+            return stadiums[teamName] || `${teamName} Stadium`;
+        }
+
+        function getCityForTeam(teamName) {
+            const cities = {
+                'Arsenal': 'London',
+                'Chelsea': 'London',
+                'Liverpool': 'Liverpool',
+                'Manchester City': 'Manchester',
+                'Manchester United': 'Manchester',
+                'Tottenham': 'London',
+                'Real Madrid': 'Madrid',
+                'Barcelona': 'Barcelona',
+                'Atletico Madrid': 'Madrid',
+                'Bayern Munich': 'Munich',
+                'Borussia Dortmund': 'Dortmund'
+            };
+            return cities[teamName] || 'Unknown';
+        }
+
+        function getCountryForTeam(teamName) {
+            const countries = {
+                'Arsenal': 'England',
+                'Chelsea': 'England',
+                'Liverpool': 'England',
+                'Manchester City': 'England',
+                'Manchester United': 'England',
+                'Tottenham': 'England',
+                'Real Madrid': 'Spain',
+                'Barcelona': 'Spain',
+                'Atletico Madrid': 'Spain',
+                'Bayern Munich': 'Germany',
+                'Borussia Dortmund': 'Germany'
+            };
+            return countries[teamName] || 'England';
+        }
+
+        // Helper function to format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-GB', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Test backend connectivity
+        async function testBackendConnection() {
+            try {
+                const response = await fetch(`${BACKEND_API_URL}/health`);
+                const data = await response.json();
+                console.log('🏥 Backend Health:', data);
+                return data.status === 'healthy';
+            } catch (error) {
+                console.error('❌ Backend not reachable:', error);
+                return false;
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Football Match Selection - Starting...');
+            
+            // Test backend first
+            testBackendConnection().then(isHealthy => {
+                if (isHealthy) {
+                    console.log('✅ Backend is healthy');
+                } else {
+                    console.log('⚠️ Backend may be offline - will use fallback');
+                }
+                
+                // Load matches regardless
+                loadMatches();
+            });
+        });
+    </script>
+</body>
+</html>

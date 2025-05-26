@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Dates - Football Trip Planner</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+  <!-- Updated Navigation with Clickable Football Logo -->
+<!-- Replace your existing navbar in ALL HTML templates with this -->
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="home.html" class="logo-link">
+                <div class="football-logo">⚽</div>
+                <h2>Football Trip Planner</h2>
+            </a>
+        </div>
+        <div class="nav-progress">
+            <div class="progress-step completed">1. Origin</div>
+            <div class="progress-step completed">2. League</div>
+            <div class="progress-step completed">3. Team</div>
+            <div class="progress-step active">4. Match</div>
+            <div class="progress-step">5. Book</div>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Clickable Football Logo Styles - Add to your style.css */
+
+.nav-brand {
+    position: relative;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.logo-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.football-logo {
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-link:hover .football-logo {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.nav-brand h2 {
+    color: var(--white);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover h2 {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation on page load */
+@keyframes logoIntro {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.football-logo {
+    animation: logoIntro 0.8s ease-out;
+}
+
+/* Click effect */
+.logo-link:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.logo-link:active .football-logo {
+    transform: scale(0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-link {
+        gap: 8px;
+        padding: 6px 8px;
+    }
+    
+    .football-logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Optional: Add a subtle glow effect */
+.logo-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 2rem;
+    height: 2rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-link:hover::before {
+    opacity: 1;
+}
+</style>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>When do you want to travel?</h1>
+                <p id="teamInfo">Loading team information...</p>
+            </div>
+
+            <div class="card">
+                <form id="datesForm">
+                    <div class="date-selection">
+                        <div class="form-group">
+                            <label for="dateFrom">From Date</label>
+                            <input type="date" id="dateFrom" name="dateFrom" required>
+                            <div class="help-text">Earliest match date you're interested in</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateTo">To Date</label>
+                            <input type="date" id="dateTo" name="dateTo" required>
+                            <div class="help-text">Latest match date you're interested in</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Search Available Matches</button>
+                </form>
+            </div>
+
+            <!-- Quick date options -->
+            <div class="quick-dates">
+                <h3>Quick Options</h3>
+                <div class="date-options">
+                    <button class="date-option" data-period="next-week">Next Week</button>
+                    <button class="date-option" data-period="next-month">Next Month</button>
+                    <button class="date-option" data-period="next-3-months">Next 3 Months</button>
+                    <button class="date-option" data-period="this-season">This Season</button>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="select_team.html" class="btn btn-secondary">← Back to Teams</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load team info
+        const team = JSON.parse(localStorage.getItem('selectedTeam') || '{}');
+        const league = JSON.parse(localStorage.getItem('selectedLeague') || '{}');
+        const origin = JSON.parse(localStorage.getItem('selectedOrigin') || '{}');
+        
+        if (team.name) {
+            document.getElementById('teamInfo').innerHTML = `
+                <span class="travel-info">From: ${origin.city || 'Unknown'}</span> • 
+                <span class="league-info">${league.name}</span> • 
+                <span class="team-info">${team.name} matches</span>
+            `;
+        }
+
+        // Set default dates (today + 30 days ahead)
+        const today = new Date();
+        const defaultEndDate = new Date(today);
+        defaultEndDate.setDate(today.getDate() + 90); // 3 months ahead
+
+        document.getElementById('dateFrom').value = today.toISOString().split('T')[0];
+        document.getElementById('dateTo').value = defaultEndDate.toISOString().split('T')[0];
+
+        // Quick date options
+        document.querySelectorAll('.date-option').forEach(button => {
+            button.addEventListener('click', function() {
+                const period = this.dataset.period;
+                const today = new Date();
+                let fromDate = new Date(today);
+                let toDate = new Date(today);
+
+                switch(period) {
+                    case 'next-week':
+                        toDate.setDate(today.getDate() + 7);
+                        break;
+                    case 'next-month':
+                        toDate.setMonth(today.getMonth() + 1);
+                        break;
+                    case 'next-3-months':
+                        toDate.setMonth(today.getMonth() + 3);
+                        break;
+                    case 'this-season':
+                        toDate.setMonth(today.getMonth() + 6);
+                        break;
+                }
+
+                document.getElementById('dateFrom').value = fromDate.toISOString().split('T')[0];
+                document.getElementById('dateTo').value = toDate.toISOString().split('T')[0];
+            });
+        });
+
+        // Form submission
+        document.getElementById('datesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+            
+            if (dateFrom > dateTo) {
+                alert('End date must be after start date');
+                return;
+            }
+
+            localStorage.setItem('selectedDates', JSON.stringify({
+                from: dateFrom,
+                to: dateTo
+            }));
+            
+            window.location.href = 'select_match.html';
+        });
+    </script>
+</body>
+</html>
