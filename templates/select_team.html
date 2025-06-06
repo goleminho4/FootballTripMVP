@@ -226,7 +226,7 @@
             teamsGrid.innerHTML = teams.map(team => `
                 <div class="team-card" data-team-id="${team.id}">
                     <div class="team-logo">
-                        <img src="../static/img/teams/${team.logo}" 
+                        <img src="/teams/${team.logo}" 
                              alt="${team.name}" 
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="team-logo-fallback" style="display: none; width: 60px; height: 60px; background: #F33455; color: white; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">
